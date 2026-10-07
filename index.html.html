@@ -1,0 +1,502 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>L'Oréal Takip Panosu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Sora:wght@500;600;700&display=swap">
+<style>
+/* Layout: sticky control bar, KPI strip, six numbered sections that follow the request, extra analyses, written report. */
+:root{
+  --bg:#f3f5f8; --card:#ffffff; --ink:#131820; --ink2:#4f5865; --muted:#838b97; --grid:#e3e7ed; --line:#d5dae2;
+  --y23:#b4cdee; --y24:#78a8e0; --y25:#3b7fd0; --y26:#0e4a96;
+  --c1:#2a78d6; --c2:#eb6834; --c3:#1baf7a; --c4:#eda100; --c5:#e87ba4; --c6:#008300; --c7:#4a3aa7; --cg:#8b929e;
+  --pos:#2a78d6; --neg:#eb6834;
+  --font-d:'Sora','IBM Plex Sans',system-ui,sans-serif; --font-b:'IBM Plex Sans',system-ui,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1116; --card:#171b22; --ink:#f1f3f6; --ink2:#b3bac5; --muted:#7c8491; --grid:#262c35; --line:#323946;
+  --y23:#2b4a76; --y24:#3f6fae; --y25:#6aa0e3; --y26:#aacbf6;
+  --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#008300; --c7:#9085e9; --cg:#7b828e;
+  --pos:#3987e5; --neg:#d95926; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1116; --card:#171b22; --ink:#f1f3f6; --ink2:#b3bac5; --muted:#7c8491; --grid:#262c35; --line:#323946;
+  --y23:#2b4a76; --y24:#3f6fae; --y25:#6aa0e3; --y26:#aacbf6;
+  --c1:#3987e5; --c2:#d95926; --c3:#199e70; --c4:#c98500; --c5:#d55181; --c6:#008300; --c7:#9085e9; --cg:#7b828e;
+  --pos:#3987e5; --neg:#d95926; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:14px;line-height:1.5;padding-inline:clamp(16px,3vw,32px);padding-block:0 48px}
+.wrap{max-width:1240px;margin-inline:auto}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line);margin-inline:calc(-1*clamp(16px,3vw,32px));padding:10px clamp(16px,3vw,32px)}
+.bar .wrap{display:flex;flex-wrap:wrap;gap:10px 24px;align-items:center;justify-content:space-between}
+h1{font-family:var(--font-d);font-size:20px;font-weight:700;margin:0;letter-spacing:-.01em}
+.sub{color:var(--ink2);font-size:12px}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card)}
+.seg button{font:500 13px var(--font-b);color:var(--ink2);background:transparent;border:0;padding:7px 14px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--y26);color:var(--card)}
+.seg button:focus-visible{outline:2px solid var(--c1);outline-offset:-2px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px;margin-block:20px 8px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px;min-width:0}
+.kpi .l{font-size:12px;color:var(--ink2)}
+.kpi .v{font-family:var(--font-d);font-size:24px;font-weight:600;letter-spacing:-.02em;margin-block:2px;font-variant-numeric:tabular-nums}
+.kpi .d{font-size:12px;color:var(--ink2);font-variant-numeric:tabular-nums}
+.chip{display:inline-block;padding:0 6px;border-radius:4px;font-weight:600;font-size:12px}
+.chip.up{background:color-mix(in srgb,var(--pos) 16%,transparent);color:var(--ink)}
+.chip.dn{background:color-mix(in srgb,var(--neg) 18%,transparent);color:var(--ink)}
+.kpis-note{font-size:12px;color:var(--muted);margin:0 0 4px}
+section{margin-top:36px}
+.eyebrow{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h2{font-family:var(--font-d);font-size:20px;font-weight:600;margin:2px 0 4px;letter-spacing:-.01em;text-wrap:balance}
+.lead{color:var(--ink2);margin:0 0 14px;max-width:80ch}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr))}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px;min-width:0}
+.panel h3{font:600 14px var(--font-b);margin:0 0 2px}
+.panel .cap{font-size:12px;color:var(--ink2);margin:0 0 10px}
+.panel .note{font-size:12px;color:var(--ink2);margin:10px 0 0}
+.chart{width:100%;position:relative}
+.chart svg{display:block;width:100%;overflow:visible}
+svg text{font-family:var(--font-b);fill:var(--muted);font-size:11px}
+svg .vl{fill:var(--ink2);font-size:11px;font-variant-numeric:tabular-nums}
+svg .grid line{stroke:var(--grid);stroke-width:1}
+svg .zero{stroke:var(--ink2);stroke-width:1}
+svg .tt{fill:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:4px 14px;margin-bottom:8px;font-size:12px;color:var(--ink2)}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+.mini{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:12px}
+.mini .panel{padding:12px}
+.tblwrap{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums;font-size:13px}
+th,td{padding:7px 10px;text-align:right;border-bottom:1px solid var(--grid);white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:600;color:var(--ink2);font-size:12px}
+tr.tot td{font-weight:600;border-top:1px solid var(--line)}
+td.h{border-radius:0}
+#tip{position:fixed;z-index:50;pointer-events:none;background:var(--card);color:var(--ink);border:1px solid var(--line);border-radius:6px;padding:8px 10px;font-size:12px;box-shadow:0 4px 16px rgba(0,0,0,.18);max-width:260px;display:none;font-variant-numeric:tabular-nums}
+#tip b{font-weight:600}
+#tip .r{display:flex;justify-content:space-between;gap:14px}
+#tip i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:6px}
+.report{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:20px clamp(16px,3vw,28px)}
+.report h3{font-family:var(--font-d);font-size:16px;margin:22px 0 8px}
+.report h3:first-child{margin-top:0}
+.report ul{padding-left:20px;margin:0;display:flex;flex-direction:column;gap:8px;max-width:95ch}
+.report li{color:var(--ink)}
+.report li b{font-weight:600}
+.warn{display:inline-block;font-size:11px;font-weight:600;padding:0 6px;border-radius:4px;background:color-mix(in srgb,var(--c4) 25%,transparent);color:var(--ink);margin-left:6px}
+footer{margin-top:32px;font-size:12px;color:var(--muted)}
+@media (max-width:560px){.kpi .v{font-size:20px}}
+@media (prefers-reduced-motion:no-preference){.kpi,.panel{transition:border-color .15s}.panel:hover{border-color:var(--muted)}}
+</style>
+
+<div class="bar"><div class="wrap">
+  <div><h1>L'Oréal Takip Panosu</h1><div class="sub" id="subtitle">2023–2026 · Alım, çıkış, kanal ve platform karşılaştırması · Tutarlar ₺ milyon (KDV hariç)</div></div>
+  <div class="seg" id="periodSeg" role="group" aria-label="Dönem seçimi">
+    <button id="pYtd" aria-pressed="true" type="button">Ocak–Ağustos (aynı dönem)</button>
+    <button id="pFull" aria-pressed="false" type="button">Tam yıl</button>
+  </div>
+</div></div>
+
+<div class="wrap">
+<div id="tab-pano">
+  <section id="tgt" style="margin-top:20px">
+    <div class="eyebrow">2026 hedefleri</div>
+    <h2>Sene başı hedef ve güncel sapma</h2>
+    <p class="lead" id="tgtLead"></p>
+    <div class="kpis" id="tgtKpis" style="margin-top:0"></div>
+    <div class="grid">
+      <div class="panel"><h3>Yıl sonu görünümü</h3><p class="cap">Hedefin yüzdesi olarak: Ocak–Ağustos gerçekleşen + Eylül–Aralık için konuşulan rakamlar</p><div id="tgtBars"></div></div>
+      <div class="panel"><h3>Eylül–Aralık rakamları</h3><p class="cap">₺ milyon · geçen yılın aynı ayı ile</p><div class="tblwrap" id="tgtMonths"></div><p class="note" id="tgtNote"></p></div>
+    </div>
+    <div class="panel" style="margin-top:12px"><h3>Hedef, gerçekleşen ve sapma</h3><p class="cap">₺ milyon · bu bölüm dönem seçiminden etkilenmez</p><div class="tblwrap" id="tgtTbl"></div></div>
+  </section>
+  <div class="kpis" id="kpis"></div>
+  <p class="kpis-note" id="kpiNote"></p>
+
+  <section>
+    <div class="eyebrow">1 · Alımlar</div>
+    <h2>L'Oréal'den yaptığımız alımlar</h2>
+    <p class="lead" id="lead1"></p>
+    <div class="grid">
+      <div class="panel"><h3>Yıllık net alım</h3><p class="cap">₺ milyon · KDV hariç</p><div class="chart" id="c1a"></div></div>
+      <div class="panel"><h3>Aylık net alım</h3><p class="cap">₺ milyon · Ekim alım zirveleri dikkat çekiyor</p><div class="legend" id="l1b"></div><div class="chart" id="c1b"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">2 · Çıkışlar</div>
+    <h2>Satılan çıkışlarımız (Sellout NIV)</h2>
+    <p class="lead" id="lead2"></p>
+    <div class="grid">
+      <div class="panel"><h3>Yıllık çıkış</h3><p class="cap">₺ milyon · Sellout NIV, tüm kanallar</p><div class="chart" id="c2a"></div></div>
+      <div class="panel"><h3>Aylık çıkış</h3><p class="cap">₺ milyon · Kasım ve Ekim belirgin mevsimsel zirve</p><div class="legend" id="l2b"></div><div class="chart" id="c2b"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">3 · Ciro payı</div>
+    <h2>Marketplace ve Retail payı</h2>
+    <p class="lead" id="lead3"></p>
+    <div class="grid">
+      <div class="panel"><h3>Kanal payı (Sellout NIV)</h3><p class="cap">Toplam çıkış içindeki %</p><div class="legend" id="l3a"></div><div class="chart" id="c3a"></div></div>
+      <div class="panel"><h3>Kanal bazında çıkış</h3><p class="cap">₺ milyon</p><div class="legend" id="l3b"></div><div class="chart" id="c3b"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">4 · Share of business</div>
+    <h2>Platformların toplam ciro içindeki payı</h2>
+    <p class="lead" id="lead4"></p>
+    <div class="grid">
+      <div class="panel"><h3>Platform payı (Sellout NIV)</h3><p class="cap">Toplam çıkış içindeki %</p><div class="legend" id="l4a"></div><div class="chart" id="c4a"></div></div>
+      <div class="panel"><h3>Pay tablosu</h3><p class="cap">% · son sütun 2026 ile 2025 aynı dönem farkı (puan)</p><div class="tblwrap" id="t4"></div><p class="note" id="n4"></p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">5 · Alım ve çıkış</div>
+    <h2>Alım–çıkış dengesi ve stok</h2>
+    <p class="lead" id="lead5"></p>
+    <div class="grid">
+      <div class="panel"><h3>Alım ve çıkış karşılaştırması</h3><p class="cap">₺ milyon · altta alım/çıkış oranı</p><div class="legend" id="l5a"></div><div class="chart" id="c5a"></div><div id="r5a"></div></div>
+      <div class="panel"><h3>Aylık alım ve çıkış, 2023 → 2026</h3><p class="cap">₺ milyon · Ocak 2023'ten Ağustos 2026'ya</p><div class="legend" id="l5b"></div><div class="chart" id="c5b"></div></div>
+      <div class="panel"><h3>Kümülatif stok birikimi</h3><p class="cap">Alım − çıkış, Ocak 2023'ten itibaren toplam, ₺ milyon. Sıfırın üstü stok artışı.</p><div class="chart" id="c5c"></div></div>
+      <div class="panel"><h3>Stok günü</h3><p class="cap">Gün · dosyadaki formül: stok değeri / son 6 ay ortalama satış × 30</p><div class="legend" id="l5d"></div><div class="chart" id="c5d"></div><p class="note">Nisan 2026 stok değeri dosyada boş; çizgi o ayda kesiliyor.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">6 · Platform karşılaştırması</div>
+    <h2>Platformların yıllık karşılaştırması ve dönüşümü</h2>
+    <p class="lead" id="lead6"></p>
+    <div class="mini" id="mini"></div>
+    <div class="grid" style="margin-top:12px">
+      <div class="panel"><h3>Dönüşüm tablosu</h3><p class="cap">Çıkış ₺ milyon ve bir önceki yıla göre değişim. 2026/2025 her zaman Ocak–Ağustos'a göre hesaplanır.</p><div class="tblwrap" id="t6"></div></div>
+      <div class="panel"><h3>2026 / 2025 değişim (Ocak–Ağustos)</h3><p class="cap">Platform bazında çıkış değişimi, %</p><div class="chart" id="c6b"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Ek analizler</div>
+    <h2>Değer katan ek karşılaştırmalar</h2>
+    <p class="lead">Büyümenin adetten mi fiyattan mı geldiği, sepet davranışı ve yıl sonu görünümü.</p>
+    <div class="grid">
+      <div class="panel"><h3>Satılan adet</h3><p class="cap">Milyon adet · tüm kanallar</p><div class="chart" id="ca"></div></div>
+      <div class="panel"><h3>Adet başına çıkış değeri</h3><p class="cap">₺ / adet · fiyat ve ürün karması etkisi</p><div class="legend" id="lb"></div><div class="chart" id="cb"></div></div>
+      <div class="panel"><h3>Marketplace sepet tutarı</h3><p class="cap">₺ · net satış / sipariş. Retail dosyasında sipariş sayısı yok.</p><div class="chart" id="cc"></div><div id="rc"></div></div>
+      <div class="panel"><h3>2026 yıl sonu göstergesi</h3><p class="cap">Basit mevsimsel projeksiyon, tahmin değildir</p><div id="proj"></div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="eyebrow">Özet tablo</div>
+    <h2>Yıllık veri tablosu</h2>
+    <p class="lead" id="lead7"></p>
+    <div class="panel"><div class="tblwrap" id="tsum"></div></div>
+  </section>
+
+</div>
+  <footer>Kaynak: L'Oréal Takip Dosyası (Özet, Retail, MP, 2026 Alımlar, Karşılaştırma sayfaları). Tutarlar KDV hariç, ₺ milyon.</footer>
+</div>
+<div id="tip"></div>
+
+<script>
+const DATA=[[2023, 1, "Amazon", "MP", 864462.11, 8955.0, 679506.57, 5458.0, 939633.57, 1003573.1], [2023, 1, "Amazon", "Retail", 2063128.52, 19051.0, 2231804.33, 0.0, 2242531.01, 2378412.88], [2023, 1, "Diğer MP", "MP", 390469.83, 3242.0, 330578.64, 1954.0, 417911.29, 444672.59], [2023, 1, "Diğer Retail", "Retail", 49195.08, 598.0, 40820.14, 0.0, 53472.6, 64239.74], [2023, 1, "Getir", "Retail", 5289749.23, 78060.0, 3980335.89, 0.0, 5749727.41, 6335308.94], [2023, 1, "HB Marketplace", "MP", 7368385.06, 82246.0, 4899303.4, 30594.0, 8009114.2, 8529314.76], [2023, 1, "HB Retail", "Retail", 3605266.89, 27000.0, 3796375.1, 0.0, 3918768.36, 4022476.06], [2023, 1, "Yemeksepeti", "Retail", 3756314.2, 48344.0, 3079203.89, 0.0, 4082950.22, 4350107.6], [2023, 2, "Amazon", "MP", 578231.28, 6953.0, 463096.27, 4238.0, 628512.78, 688957.9], [2023, 2, "Amazon", "Retail", 959398.32, 9066.0, 1047984.41, 0.0, 1042824.26, 1120223.95], [2023, 2, "Diğer MP", "MP", 187801.43, 1544.0, 151083.19, 955.0, 204131.96, 216274.94], [2023, 2, "Diğer Retail", "Retail", 17345.94, 200.0, 16146.56, 0.0, 18854.28, 20385.86], [2023, 2, "Getir", "Retail", 6080623.99, 100655.0, 4522826.82, 0.0, 6609368.7, 7388714.18], [2023, 2, "HB Marketplace", "MP", 2640530.34, 31722.0, 1849512.95, 11001.0, 2870140.21, 3163498.08], [2023, 2, "HB Retail", "Retail", 2311768.72, 13480.0, 2431498.16, 0.0, 2512792.09, 2561086.86], [2023, 2, "Yemeksepeti", "Retail", 1976518.94, 31343.0, 1668938.5, 0.0, 2148390.15, 2393398.8], [2023, 3, "Amazon", "MP", 602674.6, 7882.0, 485743.12, 4094.0, 655081.11, 748985.45], [2023, 3, "Amazon", "Retail", 5502246.48, 45868.0, 5894978.52, 0.0, 5980702.7, 6257829.33], [2023, 3, "Diğer MP", "MP", 732842.82, 5678.0, 516336.2, 3120.0, 796568.28, 820082.64], [2023, 3, "Diğer Retail", "Retail", 132727.56, 969.0, 123473.9, 0.0, 144269.08, 155032.16], [2023, 3, "Getir", "Retail", 2131057.68, 47522.0, 1550837.91, 0.0, 2316367.04, 2749458.72], [2023, 3, "HB Marketplace", "MP", 5279099.02, 52260.0, 3711238.14, 22155.0, 5738151.11, 6215152.36], [2023, 3, "HB Retail", "Retail", 6364016.65, 49276.0, 6762998.49, 0.0, 6917409.4, 7391006.34], [2023, 3, "Yemeksepeti", "Retail", 2244309.98, 28988.0, 1890288.95, 0.0, 2439467.37, 2685893.34], [2023, 4, "Amazon", "MP", 674731.8, 6661.0, 513886.0, 3833.0, 733562.93, 797371.65], [2023, 4, "Amazon", "Retail", 3310538.8, 28597.0, 3579605.66, 0.0, 3598411.74, 3829979.6], [2023, 4, "Diğer MP", "MP", 519516.46, 3717.0, 388840.82, 2096.0, 564612.39, 628227.52], [2023, 4, "Diğer Retail", "Retail", 175773.58, 1044.0, 166862.74, 0.0, 191058.24, 211083.5], [2023, 4, "Getir", "Retail", 7076822.69, 102999.0, 5525394.64, 0.0, 7692198.58, 8862264.43], [2023, 4, "HB Marketplace", "MP", 7311072.4, 54069.0, 4977517.05, 23840.0, 7946816.93, 7946816.93], [2023, 4, "HB Retail", "Retail", 3850950.88, 34809.0, 4090439.84, 0.0, 4185816.17, 4404385.73], [2023, 4, "Yemeksepeti", "Retail", 3134174.12, 34236.0, 2668056.24, 0.0, 3406711.0, 3795946.74], [2023, 5, "Amazon", "MP", 872539.77, 7505.0, 659206.14, 4451.0, 948412.8, 1024093.12], [2023, 5, "Amazon", "Retail", 2834543.84, 25504.0, 3066828.85, 0.0, 3081025.91, 3362248.82], [2023, 5, "Diğer MP", "MP", 553938.13, 5132.0, 423986.37, 2170.0, 602106.66, 648929.85], [2023, 5, "Diğer Retail", "Retail", 169644.85, 987.0, 162238.42, 0.0, 184396.57, 206515.33], [2023, 5, "Getir", "Retail", 5983510.93, 100626.0, 4408729.6, 0.0, 6503816.23, 7447417.52], [2023, 5, "HB Marketplace", "MP", 10998346.95, 89486.0, 7158966.42, 31262.0, 11954724.95, 12923913.36], [2023, 5, "HB Retail", "Retail", 7796192.86, 47562.0, 8236007.62, 0.0, 8474122.68, 8725358.85], [2023, 5, "Yemeksepeti", "Retail", 4636942.42, 73842.0, 3974551.04, 0.0, 5040154.8, 5604881.64], [2023, 6, "Amazon", "MP", 988918.32, 9891.0, 783526.29, 5323.0, 1074911.22, 1180446.72], [2023, 6, "Amazon", "Retail", 4816135.98, 36747.0, 5100955.55, 0.0, 5234930.42, 5486981.27], [2023, 6, "Diğer MP", "MP", 336677.61, 3465.0, 284348.41, 1638.0, 365953.91, 395395.79], [2023, 6, "Diğer Retail", "Retail", 39544.6, 295.0, 35805.9, 0.0, 42983.26, 45246.79], [2023, 6, "Getir", "Retail", 12257256.34, 163222.0, 9062768.72, 0.0, 13323104.71, 14682449.93], [2023, 6, "HB Marketplace", "MP", 8378640.33, 64129.0, 5582945.52, 24721.0, 9107217.75, 9827324.02], [2023, 6, "HB Retail", "Retail", 8960454.63, 62119.0, 9428650.44, 0.0, 9739624.6, 10067414.68], [2023, 6, "Yemeksepeti", "Retail", 3406305.18, 54342.0, 2999497.52, 0.0, 3702505.63, 4178437.6], [2023, 7, "Amazon", "MP", 2795959.12, 18472.0, 1607437.08, 8760.0, 3039086.12, 3243781.6], [2023, 7, "Amazon", "Retail", 1769144.73, 13422.0, 1572682.54, 0.0, 1922983.4, 2161568.98], [2023, 7, "Diğer MP", "MP", 416029.75, 4748.0, 289890.16, 1524.0, 452206.25, 488308.29], [2023, 7, "Diğer Retail", "Retail", 49654.15, 275.0, 45973.73, 0.0, 53971.91, 58494.66], [2023, 7, "Getir", "Retail", 8134751.73, 80725.0, 6225416.03, 0.0, 8842121.45, 9764747.5], [2023, 7, "HB Marketplace", "MP", 5514561.93, 33787.0, 3531344.64, 13552.0, 5994089.05, 6750397.52], [2023, 7, "HB Retail", "Retail", 4720261.51, 22063.0, 5023969.89, 0.0, 5130719.03, 5436021.14], [2023, 7, "Yemeksepeti", "Retail", 2918690.49, 22869.0, 2565789.25, 0.0, 3172489.67, 3730827.69], [2023, 8, "Amazon", "MP", 409587.96, 4553.0, 389452.44, 2078.0, 445204.31, 482900.9], [2023, 8, "Amazon", "Retail", 4682327.35, 30877.0, 5139118.17, 0.0, 5089486.26, 5519767.64], [2023, 8, "Diğer MP", "MP", 523254.94, 4409.0, 395767.68, 1610.0, 568755.39, 629269.19], [2023, 8, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2023, 8, "Getir", "Retail", 6040875.89, 78903.0, 4726134.96, 0.0, 6566169.45, 8026442.86], [2023, 8, "HB Marketplace", "MP", 9566935.6, 60954.0, 6058032.23, 21383.0, 10398843.05, 11842657.27], [2023, 8, "HB Retail", "Retail", 13202481.49, 79300.0, 14336808.76, 0.0, 14350523.36, 15750694.03], [2023, 8, "Yemeksepeti", "Retail", 6749390.68, 75776.0, 5039795.56, 0.0, 7336294.22, 8174538.01], [2023, 9, "Amazon", "MP", 723046.45, 8159.0, 524992.88, 3348.0, 785922.82, 882562.26], [2023, 9, "Amazon", "Retail", 17223572.77, 94955.0, 18790069.93, 0.0, 18721274.75, 20384328.66], [2023, 9, "Diğer MP", "MP", 441245.01, 3741.0, 305483.25, 1376.0, 479614.16, 516933.83], [2023, 9, "Diğer Retail", "Retail", 3028319.8, 12026.0, 3096976.02, 0.0, 3291651.96, 3492102.02], [2023, 9, "Getir", "Retail", 6992426.38, 57549.0, 5527004.12, 0.0, 7600463.45, 8411865.84], [2023, 9, "HB Marketplace", "MP", 4720302.06, 27149.0, 3046875.83, 10899.0, 5130770.41, 5612792.05], [2023, 9, "HB Retail", "Retail", 4173513.81, 18025.0, 4500973.18, 0.0, 4536428.05, 5024414.99], [2023, 9, "Yemeksepeti", "Retail", 1284362.97, 15755.0, 1142206.02, 0.0, 1396046.71, 1686871.31], [2023, 10, "Amazon", "MP", 368264.08, 4397.0, 282400.58, 1568.0, 400287.04, 440569.62], [2023, 10, "Amazon", "Retail", 507954.81, 4781.0, 586414.2, 0.0, 552124.8, 631467.32], [2023, 10, "Diğer MP", "MP", 301668.4, 2564.0, 220300.45, 1212.0, 327900.43, 346956.19], [2023, 10, "Diğer Retail", "Retail", 66928.58, 243.0, 70690.78, 0.0, 72748.46, 76475.72], [2023, 10, "Getir", "Retail", 31615737.93, 253337.0, 25068505.5, 0.0, 34364932.53, 36993968.42], [2023, 10, "HB Marketplace", "MP", 6881605.35, 40335.0, 4635686.01, 15458.0, 7480005.81, 8175423.11], [2023, 10, "HB Retail", "Retail", 18675284.62, 92724.0, 19939214.82, 0.0, 20299222.41, 21327454.82], [2023, 10, "Yemeksepeti", "Retail", 11448850.24, 100846.0, 9928046.85, 0.0, 11244440.4, 13397517.56], [2023, 11, "Amazon", "MP", 984726.17, 9263.0, 696495.43, 3684.0, 1070354.53, 1189830.39], [2023, 11, "Amazon", "Retail", 5438340.1, 27649.0, 5979325.04, 0.0, 5960015.0, 6488918.27], [2023, 11, "Diğer MP", "MP", 7052609.63, 22728.0, 2881101.82, 10314.0, 7665880.02, 7897272.49], [2023, 11, "Diğer Retail", "Retail", 13679.38, 70.0, 14535.1, 0.0, 14868.89, 15322.63], [2023, 11, "Getir", "Retail", 7715242.05, 60439.0, 5744778.17, 0.0, 8386132.66, 9056074.53], [2023, 11, "HB Marketplace", "MP", 18244740.66, 125568.0, 11029926.33, 44844.0, 19831037.79, 20964634.42], [2023, 11, "HB Retail", "Retail", 856768.4, 4000.0, 903330.0, 0.0, 931270.0, 931270.0], [2023, 11, "Yemeksepeti", "Retail", 578328.53, 15425.0, 511846.41, 0.0, 628617.97, 696307.57], [2023, 12, "Amazon", "MP", 919791.22, 9090.0, 677845.21, 3815.0, 999773.07, 1117927.6], [2023, 12, "Amazon", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2023, 12, "Diğer MP", "MP", 3172854.35, 12476.0, 1767771.71, 6861.0, 3448754.73, 3560979.7], [2023, 12, "Diğer Retail", "Retail", 287822.79, 4015.0, 285289.44, 0.0, 312850.86, 378679.14], [2023, 12, "Getir", "Retail", 3299332.42, 31171.0, 2499311.33, 0.0, 3586230.89, 4009079.65], [2023, 12, "HB Marketplace", "MP", 9558402.57, 63932.0, 6106872.13, 20840.0, 10389568.02, 11295354.09], [2023, 12, "HB Retail", "Retail", 161001.29, 420.0, 169751.4, 0.0, 175001.4, 175001.4], [2023, 12, "Yemeksepeti", "Retail", 367080.11, 6938.0, 318466.8, 0.0, 399000.12, 451770.48], [2024, 1, "Amazon", "MP", 1046239.13, 6995.0, 789415.62, 3429.0, 1137216.44, 1267017.87], [2024, 1, "Diğer MP", "MP", 577228.49, 2973.0, 461321.01, 1619.0, 627422.26, 673730.37], [2024, 1, "Diğer Retail", "Retail", 1634062.21, 7968.0, 1630849.66, 0.0, 1776154.57, 1887349.98], [2024, 1, "Getir", "Retail", 1802482.1, 21158.0, 1349803.37, 0.0, 1959219.67, 2237458.96], [2024, 1, "HB Marketplace", "MP", 16025219.58, 69836.0, 11050826.32, 30177.0, 18283811.62, 19391341.64], [2024, 1, "HB Retail", "Retail", 4292839.17, 13485.0, 4529794.98, 0.0, 4661289.51, 4693606.44], [2024, 1, "Yemeksepeti", "Retail", 2355161.46, 17538.0, 1990490.24, 0.0, 2559958.11, 2761407.0], [2024, 2, "Amazon", "MP", 2683268.54, 17665.0, 1935829.71, 8783.0, 2916596.24, 3217807.58], [2024, 2, "Diğer MP", "MP", 691321.77, 3202.0, 509206.74, 1671.0, 751436.71, 792016.71], [2024, 2, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2024, 2, "Getir", "Retail", 3067610.17, 31202.0, 2431608.92, 0.0, 3334358.88, 3865011.12], [2024, 2, "HB Marketplace", "MP", 24028639.7, 108880.0, 14734435.82, 50199.0, 23852871.17, 28206473.94], [2024, 2, "HB Retail", "Retail", 8095938.21, 28061.0, 8714340.53, 0.0, 8799932.84, 9242925.75], [2024, 2, "Yemeksepeti", "Retail", 6293687.18, 35054.0, 5591657.26, 0.0, 6840964.32, 7620952.62], [2024, 3, "Amazon", "MP", 5667159.0, 29044.0, 3691434.0, 14399.0, 6160816.0, 6764213.0], [2024, 3, "Diğer MP", "MP", 1273532.0, 5438.0, 915279.89, 2558.0, 1384273.48, 1498226.16], [2024, 3, "Diğer Retail", "Retail", 77394.41, 294.0, 82934.88, 0.0, 84124.36, 90374.82], [2024, 3, "Getir", "Retail", 5682386.42, 44201.0, 4277542.97, 0.0, 6176506.98, 6996108.93], [2024, 3, "HB Marketplace", "MP", 25452482.08, 89083.0, 14823781.66, 36127.0, 28247792.23, 29932203.81], [2024, 3, "HB Retail", "Retail", 10499981.47, 29141.0, 11370082.4, 0.0, 11413023.34, 12611580.6], [2024, 3, "Yemeksepeti", "Retail", 10016370.13, 51973.0, 8505570.59, 0.0, 10887358.84, 12266008.62], [2024, 4, "Amazon", "MP", 5341404.0, 26826.0, 3367424.0, 12524.0, 5805874.0, 6441467.0], [2024, 4, "Diğer MP", "MP", 1233262.18, 4929.0, 902438.43, 2333.0, 1340502.37, 1442020.91], [2024, 4, "Diğer Retail", "Retail", 48559.91, 267.0, 53396.25, 0.0, 52782.52, 56967.69], [2024, 4, "Getir", "Retail", 8883144.61, 55405.0, 6928727.15, 0.0, 9655591.96, 11364589.11], [2024, 4, "HB Marketplace", "MP", 23095842.2, 85964.0, 14345319.88, 33978.0, 25461290.55, 26999172.15], [2024, 4, "HB Retail", "Retail", 10560845.78, 27960.0, 11220665.55, 0.0, 11479180.19, 11978018.13], [2024, 4, "Yemeksepeti", "Retail", 4366199.52, 19292.0, 3805047.56, 0.0, 4745869.04, 5516102.18], [2024, 5, "Amazon", "MP", 5955080.52, 31805.0, 3798274.82, 13489.0, 6620889.6, 7196619.13], [2024, 5, "Diğer MP", "MP", 1329218.89, 5298.0, 869359.27, 2491.0, 1431718.03, 1559912.82], [2024, 5, "Diğer Retail", "Retail", 50636.02, 188.0, 57639.59, 0.0, 57639.59, 60945.59], [2024, 5, "Getir", "Retail", 7426709.7, 56445.0, 5577099.06, 0.0, 8540581.71, 9283240.98], [2024, 5, "HB Marketplace", "MP", 36561717.75, 126850.0, 21486471.49, 47521.0, 38637444.46, 42778745.72], [2024, 5, "HB Retail", "Retail", 5582887.03, 17409.0, 6023161.23, 0.0, 5955745.71, 6473636.64], [2024, 5, "Yemeksepeti", "Retail", 11196334.0, 78396.0, 9746241.31, 0.0, 12391903.61, 13469460.45], [2024, 6, "Amazon", "MP", 7040905.88, 36461.0, 3900636.95, 12644.0, 7653158.57, 8388215.75], [2024, 6, "Diğer MP", "MP", 989098.35, 4494.0, 702514.0, 2130.0, 1075106.89, 1146263.65], [2024, 6, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2024, 6, "Getir", "Retail", 26117564.23, 144033.0, 20706088.23, 0.0, 28388656.77, 30886222.1], [2024, 6, "HB Marketplace", "MP", 33348882.68, 122980.0, 18571928.81, 46718.0, 36826628.63, 39252699.6], [2024, 6, "HB Retail", "Retail", 5903825.75, 16767.0, 6284723.61, 0.0, 6417201.9, 6611868.45], [2024, 6, "Yemeksepeti", "Retail", 11777547.61, 81912.0, 9811312.6, 0.0, 12801682.18, 14214990.66], [2024, 7, "Amazon", "MP", 12041857.39, 55735.0, 6822200.13, 23504.0, 13082998.42, 14317671.85], [2024, 7, "Diğer MP", "MP", 3440381.59, 10834.0, 1945294.19, 5242.0, 3736470.03, 3972171.91], [2024, 7, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2024, 7, "Getir", "Retail", 6216629.79, 53460.0, 4769030.4, 0.0, 6523130.76, 7761530.5], [2024, 7, "HB Marketplace", "MP", 18326273.47, 68256.0, 10435196.96, 25238.0, 20262925.61, 22007669.47], [2024, 7, "HB Retail", "Retail", 15453987.47, 40257.0, 16824697.77, 0.0, 16818512.02, 18544829.52], [2024, 7, "Yemeksepeti", "Retail", 6428834.22, 33886.0, 5384125.62, 0.0, 6988691.26, 7642808.14], [2024, 8, "Amazon", "MP", 4424076.82, 21557.0, 2851139.73, 9412.0, 4808779.15, 5300872.73], [2024, 8, "Diğer MP", "MP", 2022937.49, 6163.0, 1260857.3, 3321.0, 2198845.1, 2280629.43], [2024, 8, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2024, 8, "Getir", "Retail", 8238554.06, 76882.0, 6212133.5, 0.0, 8954950.06, 10286175.2], [2024, 8, "HB Marketplace", "MP", 21969905.21, 71797.0, 13553070.17, 28936.0, 24659503.39, 25773662.01], [2024, 8, "HB Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2024, 8, "Yemeksepeti", "Retail", 7950413.89, 52296.0, 6408674.87, 0.0, 8641754.22, 9391958.16], [2024, 9, "Amazon", "MP", 7420042.82, 33216.0, 4493611.98, 16973.0, 8065263.13, 8857404.1], [2024, 9, "Diğer MP", "MP", 3113307.14, 9652.0, 1796410.52, 5031.0, 3288953.09, 3440964.24], [2024, 9, "Diğer Retail", "Retail", 30662.26, 117.0, 33025.05, 0.0, 33328.54, 34894.98], [2024, 9, "Getir", "Retail", 6919840.92, 59111.0, 5129904.01, 0.0, 7521572.45, 8791604.89], [2024, 9, "HB Marketplace", "MP", 32445355.85, 98219.0, 20156273.25, 41099.0, 36793735.17, 38247135.02], [2024, 9, "HB Retail", "Retail", 23898762.59, 59739.0, 25415483.01, 0.0, 25976915.86, 27181020.6], [2024, 9, "Yemeksepeti", "Retail", 6691597.15, 40180.0, 5475269.68, 0.0, 7273476.43, 8008481.42], [2024, 10, "Amazon", "MP", 8524360.0, 40190.0, 5128560.0, 18402.0, 9265608.48, 10285075.0], [2024, 10, "Diğer MP", "MP", 5338506.38, 16657.0, 3195740.08, 8165.0, 5802724.35, 6063991.09], [2024, 10, "Diğer Retail", "Retail", 1228212.15, 4328.0, 1147902.3, 0.0, 1335013.21, 1422472.68], [2024, 10, "Getir", "Retail", 19434294.11, 148545.0, 15393716.17, 0.0, 21124232.73, 23642773.14], [2024, 10, "HB Marketplace", "MP", 17434440.83, 56646.0, 11519139.64, 23503.0, 18950479.16, 20968592.23], [2024, 10, "HB Retail", "Retail", 27570577.45, 67639.0, 29375647.89, 0.0, 29698018.96, 31262009.91], [2024, 10, "Yemeksepeti", "Retail", 14092314.56, 111314.0, 11871394.66, 0.0, 15317733.21, 16866497.54], [2024, 11, "Amazon", "MP", 9990697.72, 48581.0, 5998218.79, 21135.0, 10859449.94, 11937698.59], [2024, 11, "Diğer MP", "MP", 2156506.18, 7093.0, 1379643.5, 3435.0, 2344028.49, 2464224.14], [2024, 11, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2024, 11, "Getir", "Retail", 13926969.6, 88996.0, 10657348.02, 0.0, 15138004.36, 16863049.28], [2024, 11, "HB Marketplace", "MP", 78781162.08, 229976.0, 45942726.79, 82532.0, 85631678.44, 93395407.57], [2024, 11, "HB Retail", "Retail", 20418576.24, 53444.0, 21989848.73, 0.0, 22194104.61, 22329968.59], [2024, 11, "Yemeksepeti", "Retail", 12800963.24, 69224.0, 10785538.88, 0.0, 13914090.48, 14901231.28], [2024, 12, "Amazon", "MP", 5938566.0, 31237.0, 3728435.0, 11345.0, 6454959.0, 7003652.0], [2024, 12, "Diğer MP", "MP", 1720906.0, 5317.0, 1109779.53, 2658.0, 1870549.0, 1945732.0], [2024, 12, "Diğer Retail", "Retail", 683015.0, 2258.0, 651855.0, 0.0, 742407.0, 789845.0], [2024, 12, "Getir", "Retail", 18524495.0, 99507.0, 14140137.0, 0.0, 20135321.0, 22415714.0], [2024, 12, "HB Marketplace", "MP", 23347860.0, 90294.0, 14773171.0, 33621.0, 25378096.0, 27213477.0], [2024, 12, "HB Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2024, 12, "Yemeksepeti", "Retail", 8774141.0, 58794.0, 7488148.0, 0.0, 9537110.0, 10524301.0], [2025, 1, "Amazon", "MP", 1519483.0, 8073.0, 1254180.0, 4617.0, 1651611.0, 1840106.0], [2025, 1, "Diğer MP", "MP", 1032147.0, 4085.0, 784033.0, 1676.0, 1121898.0, 1191105.0], [2025, 1, "Diğer Retail", "Retail", 994074.0, 2643.0, 1076067.0, 0.0, 1080516.0, 1132297.0], [2025, 1, "Getir", "Retail", 11423798.0, 62612.0, 8734693.0, 0.0, 12417172.0, 14178042.0], [2025, 1, "HB Marketplace", "MP", 30788700.0, 101088.0, 19819569.0, 40062.0, 33465967.0, 36135777.0], [2025, 1, "HB Retail", "Retail", 22294741.0, 47899.0, 23567959.0, 0.0, 24233414.0, 24359688.0], [2025, 1, "Yemeksepeti", "Retail", 11451831.0, 46787.0, 9922155.0, 0.0, 12447642.0, 13008271.0], [2025, 2, "Amazon", "MP", 3670910.81, 22806.0, 2625123.61, 7598.0, 3990120.45, 4346380.9], [2025, 2, "Diğer MP", "MP", 1528973.05, 6303.0, 1106569.1, 2186.0, 1661927.22, 1780971.75], [2025, 2, "Diğer Retail", "Retail", 1138018.9, 3904.0, 1164611.83, 0.0, 1236977.07, 1297960.62], [2025, 2, "Getir", "Retail", 9850843.66, 53430.0, 7618353.44, 0.0, 10707438.76, 12183815.56], [2025, 2, "HB Marketplace", "MP", 21169119.96, 67827.0, 14403240.91, 27992.0, 23009913.0, 24643901.68], [2025, 2, "HB Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2025, 2, "Yemeksepeti", "Retail", 6459840.36, 38393.0, 5291759.91, 0.0, 7021565.61, 7999576.59], [2025, 3, "Amazon", "MP", 3867832.65, 21418.0, 2584198.55, 7174.0, 4204173.61, 4763777.49], [2025, 3, "Diğer MP", "MP", 695651.59, 2653.0, 500896.82, 1075.0, 756145.19, 803357.6], [2025, 3, "Diğer Retail", "Retail", 1113270.0, 6147.0, 1218327.08, 0.0, 1210074.3, 1305474.36], [2025, 3, "Getir", "Retail", 11400354.82, 59795.0, 8781056.6, 0.0, 12391703.85, 14055616.59], [2025, 3, "HB Marketplace", "MP", 23696178.39, 79521.0, 15169885.4, 30408.0, 25756742.0, 27961173.39], [2025, 3, "HB Retail", "Retail", 7860618.06, 21366.0, 8348950.46, 0.0, 8544163.55, 8669527.34], [2025, 3, "Yemeksepeti", "Retail", 9415228.57, 54775.0, 8000126.81, 0.0, 10233963.07, 11384456.84], [2025, 4, "Amazon", "MP", 2171671.21, 11898.0, 1641591.36, 5224.0, 2360511.93, 2655344.4], [2025, 4, "Diğer MP", "MP", 696049.22, 2882.0, 526134.94, 1145.0, 756575.24, 784008.12], [2025, 4, "Diğer Retail", "Retail", 1848390.16, 4873.0, 1924129.2, 0.0, 2009119.74, 2135244.46], [2025, 4, "Getir", "Retail", 19072931.07, 89060.0, 14690596.28, 0.0, 20731446.81, 23366798.01], [2025, 4, "HB Marketplace", "MP", 25804066.0, 81429.0, 16333634.0, 31338.0, 28047892.0, 30462518.0], [2025, 4, "HB Retail", "Retail", 3745039.58, 7800.0, 4182324.0, 0.0, 4070695.2, 4798056.0], [2025, 4, "Yemeksepeti", "Retail", 15283871.56, 85039.0, 13388944.73, 0.0, 16612903.87, 18179839.84], [2025, 5, "Amazon", "MP", 3944181.99, 14918.0, 2486205.39, 7352.0, 4287153.81, 4789896.67], [2025, 5, "Diğer MP", "MP", 673840.45, 2049.0, 517206.14, 1084.0, 732435.26, 794999.05], [2025, 5, "Diğer Retail", "Retail", 524562.47, 1380.0, 591302.7, 0.0, 570176.6, 612045.54], [2025, 5, "Getir", "Retail", 19129350.99, 86053.0, 14802205.85, 0.0, 20792772.81, 23649289.0], [2025, 5, "HB Marketplace", "MP", 41313591.23, 104909.0, 20270194.77, 44783.0, 44906072.98, 48881754.11], [2025, 5, "HB Retail", "Retail", 8963674.92, 19368.0, 9544185.57, 0.0, 9743124.92, 9921601.83], [2025, 5, "Yemeksepeti", "Retail", 5234464.93, 32936.0, 4357629.82, 0.0, 5689633.49, 6588585.58], [2025, 6, "Amazon", "MP", 5376111.62, 21729.0, 3112358.68, 8469.0, 5843599.16, 6561785.61], [2025, 6, "Diğer MP", "MP", 296302.99, 905.0, 247887.81, 529.0, 322068.46, 341241.73], [2025, 6, "Diğer Retail", "Retail", 877209.57, 2055.0, 996656.82, 0.0, 953488.66, 1033283.7], [2025, 6, "Getir", "Retail", 16910206.52, 65472.0, 13205556.34, 0.0, 18380658.83, 20667697.0], [2025, 6, "HB Marketplace", "MP", 34681853.04, 83618.0, 19155496.9, 37869.0, 37697665.8, 40039971.6], [2025, 6, "HB Retail", "Retail", 14311891.29, 30202.0, 15425094.13, 0.0, 15556403.58, 16714186.55], [2025, 6, "Yemeksepeti", "Retail", 6717118.98, 31593.0, 5653725.42, 0.0, 7301216.29, 8175566.39], [2025, 7, "Amazon", "MP", 11149699.73, 35406.0, 4305078.19, 11692.0, 12119236.39, 12874486.75], [2025, 7, "Diğer MP", "MP", 309749.58, 1371.0, 263812.94, 515.0, 336684.33, 352407.66], [2025, 7, "Diğer Retail", "Retail", 2280293.33, 5607.0, 2413520.76, 0.0, 2478579.71, 2604825.57], [2025, 7, "Getir", "Retail", 20948242.45, 98869.0, 16276819.25, 0.0, 22769828.75, 26335592.26], [2025, 7, "HB Marketplace", "MP", 26597166.35, 76128.0, 15543935.27, 29426.0, 28909963.11, 31420660.87], [2025, 7, "HB Retail", "Retail", 7363342.67, 15453.0, 7824525.78, 0.0, 8003633.34, 8128795.23], [2025, 7, "Yemeksepeti", "Retail", 15273821.64, 78856.0, 12846129.76, 0.0, 16601980.04, 18740282.78], [2025, 8, "Amazon", "MP", 4015767.5, 12663.0, 1944587.76, 4877.0, 4364963.28, 4673020.81], [2025, 8, "Diğer MP", "MP", 311535.22, 803.0, 240134.82, 466.0, 338625.24, 348057.54], [2025, 8, "Diğer Retail", "Retail", 1003760.32, 2199.0, 1089302.61, 0.0, 1091043.82, 1150089.65], [2025, 8, "Getir", "Retail", 16877764.67, 89912.0, 12454364.42, 0.0, 18345396.38, 21230121.82], [2025, 8, "HB Marketplace", "MP", 15751520.49, 42846.0, 9648924.32, 18275.0, 17121217.25, 18331160.68], [2025, 8, "HB Retail", "Retail", 1862335.63, 4461.0, 1985140.2, 0.0, 2024277.86, 2070066.78], [2025, 8, "Yemeksepeti", "Retail", 6839558.57, 40311.0, 5608521.77, 0.0, 7434302.79, 8471719.23], [2025, 9, "Amazon", "MP", 6263052.03, 23604.0, 3234737.45, 8005.0, 6807663.92, 7694539.61], [2025, 9, "Diğer MP", "MP", 185358.03, 500.0, 160078.03, 321.0, 201476.12, 210490.16], [2025, 9, "Diğer Retail", "Retail", 258636.48, 1030.0, 271697.64, 0.0, 281126.61, 313756.86], [2025, 9, "Getir", "Retail", 17047631.06, 74695.0, 13136684.06, 0.0, 18530033.77, 20762352.27], [2025, 9, "HB Marketplace", "MP", 21067683.5, 48245.0, 12353674.27, 22467.0, 22900578.92, 24107683.99], [2025, 9, "HB Retail", "Retail", 19227657.84, 30987.0, 20292094.98, 0.0, 20899628.09, 20939645.43], [2025, 9, "Yemeksepeti", "Retail", 11992548.98, 58463.0, 10092033.83, 0.0, 13035379.33, 14558092.48], [2025, 10, "Amazon", "MP", 6637153.95, 23918.0, 3514749.98, 8501.0, 7214295.36, 8046911.98], [2025, 10, "Diğer MP", "MP", 526314.91, 1312.0, 396327.14, 706.0, 572081.42, 618531.22], [2025, 10, "Diğer Retail", "Retail", 1151937.99, 2903.0, 890486.13, 0.0, 1252106.51, 1389118.29], [2025, 10, "Getir", "Retail", 26948234.34, 144332.0, 21930083.68, 0.0, 29291544.66, 32944582.81], [2025, 10, "HB Marketplace", "MP", 33764660.66, 80331.0, 20609604.04, 32428.0, 36700715.26, 40094895.24], [2025, 10, "HB Retail", "Retail", 22365299.11, 37821.0, 23684964.76, 0.0, 24310107.72, 24810313.22], [2025, 10, "Yemeksepeti", "Retail", 11129098.31, 75052.0, 9365953.07, 0.0, 12096838.36, 13927721.35], [2025, 11, "Amazon", "MP", 11417973.21, 35515.0, 5180041.57, 9562.0, 12410838.15, 13831144.42], [2025, 11, "Diğer MP", "MP", 467964.53, 1116.0, 356459.35, 643.0, 508657.1, 536413.93], [2025, 11, "Diğer Retail", "Retail", 130631.2, 360.0, 146530.61, 0.0, 141990.44, 155680.98], [2025, 11, "Getir", "Retail", 19079135.32, 93166.0, 14847242.4, 0.0, 20738187.92, 23082826.43], [2025, 11, "HB Marketplace", "MP", 95225880.45, 262329.0, 49537258.17, 84745.0, 103506331.7, 111137213.38], [2025, 11, "HB Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2025, 11, "Yemeksepeti", "Retail", 7988748.37, 60059.0, 6715552.86, 0.0, 8683409.55, 9797507.6], [2025, 12, "Amazon", "MP", 9174451.08, 27587.0, 4420179.76, 7645.0, 9972228.44, 11077021.74], [2025, 12, "Diğer MP", "MP", 382339.48, 905.0, 307359.17, 525.0, 415586.39, 433835.94], [2025, 12, "Diğer Retail", "Retail", 2065531.76, 14725.0, 2220458.26, 0.0, 2245135.38, 2388258.76], [2025, 12, "Getir", "Retail", 29133271.69, 147667.0, 22089923.73, 0.0, 31666599.67, 36575367.11], [2025, 12, "HB Marketplace", "MP", 52691673.24, 134538.0, 27267416.12, 52036.0, 57273532.54, 60614079.56], [2025, 12, "HB Retail", "Retail", 1939803.49, 2592.0, 2045226.66, 0.0, 2108482.05, 2108482.05], [2025, 12, "Yemeksepeti", "Retail", 20985696.22, 104972.0, 17957218.35, 0.0, 22810539.13, 25640306.65], [2026, 1, "Amazon", "MP", 6082960.69, 18072.0, 3667051.37, 8815.0, 6611912.78, 7235416.0], [2026, 1, "Diğer MP", "MP", 431725.84, 1178.0, 353522.11, 610.0, 469267.22, 491355.28], [2026, 1, "Diğer Retail", "Retail", 154316.39, 396.0, 166207.89, 0.0, 167735.19, 196130.04], [2026, 1, "Getir", "Retail", 17310222.54, 78540.0, 13644249.84, 0.0, 18815459.28, 20759699.71], [2026, 1, "HB Marketplace", "MP", 27773666.8, 82512.0, 17499916.96, 31792.0, 30188752.3, 32332937.9], [2026, 1, "HB Retail", "Retail", 2845701.37, 3449.0, 2963640.1, 0.0, 3093153.66, 3093153.66], [2026, 1, "Yemeksepeti", "Retail", 12512129.21, 58560.0, 10323027.94, 0.0, 13600140.43, 15264928.16], [2026, 2, "Amazon", "MP", 6581542.23, 18018.0, 3450862.13, 8016.0, 7153848.61, 7776323.71], [2026, 2, "Diğer MP", "MP", 552159.2, 1141.0, 429752.56, 691.0, 600173.05, 631926.32], [2026, 2, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 2, "Getir", "Retail", 21821319.03, 89542.0, 16412146.98, 0.0, 23718825.03, 27665768.54], [2026, 2, "HB Marketplace", "MP", 20218869.1, 48028.0, 12709670.58, 21409.0, 21977027.3, 23404144.53], [2026, 2, "HB Retail", "Retail", 1399484.49, 2052.0, 1500828.39, 0.0, 1521178.79, 1589241.12], [2026, 2, "Yemeksepeti", "Retail", 7603388.96, 30907.0, 6173270.34, 0.0, 8264553.22, 9322520.16], [2026, 3, "Amazon", "MP", 6477788.81, 19774.0, 3379505.03, 6910.0, 7041074.8, 7687979.32], [2026, 3, "Diğer MP", "MP", 1435293.98, 3127.0, 966111.02, 1529.0, 1560102.15, 1625541.08], [2026, 3, "Diğer Retail", "Retail", 769528.31, 1610.0, 869685.49, 0.0, 836443.82, 909594.02], [2026, 3, "Getir", "Retail", 23516391.43, 91294.0, 17773386.28, 0.0, 25561295.03, 28770252.62], [2026, 3, "HB Marketplace", "MP", 32513144.91, 72492.0, 19200212.26, 30849.0, 35340374.9, 37719581.71], [2026, 3, "HB Retail", "Retail", 2558084.39, 4290.0, 2705685.33, 0.0, 2780526.51, 2802534.63], [2026, 3, "Yemeksepeti", "Retail", 20924258.46, 75682.0, 18145645.31, 0.0, 22743759.19, 25508176.82], [2026, 4, "Amazon", "MP", 2364334.28, 6839.0, 1378111.99, 3038.0, 2569928.57, 2814377.56], [2026, 4, "Diğer MP", "MP", 935909.94, 1823.0, 627379.38, 958.0, 1017293.41, 1080128.5], [2026, 4, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 4, "Getir", "Retail", 28775056.96, 126916.0, 22102956.35, 0.0, 31277235.83, 35171219.22], [2026, 4, "HB Marketplace", "MP", 32326251.6, 67764.0, 18315543.73, 32922.0, 35137230.0, 37413501.9], [2026, 4, "HB Retail", "Retail", 1790547.35, 1983.0, 1889367.72, 0.0, 1946247.11, 1958752.38], [2026, 4, "Yemeksepeti", "Retail", 8195044.29, 31826.0, 7067655.63, 0.0, 8907656.84, 9962803.47], [2026, 5, "Amazon", "MP", 1755596.28, 4596.0, 1044357.46, 2043.0, 1908256.82, 2146202.7], [2026, 5, "Diğer MP", "MP", 786071.48, 1554.0, 540275.84, 827.0, 854425.52, 909381.04], [2026, 5, "Diğer Retail", "Retail", 1951351.21, 4160.0, 2150474.84, 0.0, 2121033.93, 2284816.89], [2026, 5, "Getir", "Retail", 60954354.68, 240726.0, 46307921.99, 0.0, 66254733.35, 75234963.49], [2026, 5, "HB Marketplace", "MP", 38221536.03, 77543.0, 20355601.58, 32803.0, 41545147.86, 44473902.48], [2026, 5, "HB Retail", "Retail", 10219611.66, 14802.0, 10831056.98, 0.0, 11108273.55, 11326524.14], [2026, 5, "Yemeksepeti", "Retail", 10680762.92, 37852.0, 9255430.3, 0.0, 11609524.91, 12874757.79], [2026, 6, "Amazon", "MP", 5448091.49, 11199.0, 2562334.98, 4054.0, 5921838.58, 6559338.1], [2026, 6, "Diğer MP", "MP", 627047.14, 1608.0, 403561.98, 698.0, 681572.97, 746308.34], [2026, 6, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 6, "Getir", "Retail", 5897031.51, 19342.0, 4701147.09, 0.0, 6409816.86, 7382624.03], [2026, 6, "HB Marketplace", "MP", 27190736.58, 55014.0, 14146855.26, 22262.0, 29555148.45, 31645287.3], [2026, 6, "HB Retail", "Retail", 5822745.6, 8284.0, 6179496.65, 0.0, 6329071.3, 6415794.48], [2026, 6, "Yemeksepeti", "Retail", 33389977.77, 67995.0, 29312483.91, 0.0, 36293454.1, 39021541.14], [2026, 7, "Amazon", "MP", 3471989.3, 9027.0, 1948690.52, 4499.0, 3773901.41, 4123224.49], [2026, 7, "Diğer MP", "MP", 489413.33, 1071.0, 326315.22, 462.0, 531971.01, 587142.46], [2026, 7, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 7, "Getir", "Retail", 25926620.64, 80157.0, 20114882.48, 0.0, 28181109.4, 32688262.53], [2026, 7, "HB Marketplace", "MP", 27834266.72, 55199.0, 15094100.08, 24115.0, 30254637.74, 32611815.34], [2026, 7, "HB Retail", "Retail", 3938395.8, 4749.0, 4169819.76, 0.0, 4280865.0, 4345086.18], [2026, 7, "Yemeksepeti", "Retail", 7776951.81, 31448.0, 6662774.95, 0.0, 8453208.49, 9389447.95], [2026, 8, "Amazon", "MP", 7865070.42, 16416.0, 3555548.79, 5897.0, 8548989.59, 9014141.31], [2026, 8, "Diğer MP", "MP", 449285.32, 831.0, 317413.44, 492.0, 488353.61, 517674.44], [2026, 8, "Diğer Retail", "Retail", 1319757.72, 2504.0, 1552773.64, 0.0, 1434519.26, 1546605.34], [2026, 8, "Getir", "Retail", 31624484.14, 113598.0, 24025892.85, 0.0, 34374439.28, 39608092.98], [2026, 8, "HB Marketplace", "MP", 22561266.36, 45531.0, 12528621.41, 18647.0, 24523115.61, 26229972.22], [2026, 8, "HB Retail", "Retail", 6121535.36, 7056.0, 6384631.08, 0.0, 6653842.79, 6682988.28], [2026, 8, "Yemeksepeti", "Retail", 4301662.48, 15715.0, 3544481.71, 0.0, 4675720.08, 5434875.83], [2026, 9, "Amazon", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 9, "Diğer MP", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 9, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 9, "Getir", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 9, "HB Marketplace", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 9, "HB Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 9, "Yemeksepeti", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 10, "Amazon", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 10, "Diğer MP", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 10, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 10, "Getir", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 10, "HB Marketplace", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 10, "HB Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 10, "Yemeksepeti", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 11, "Amazon", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 11, "Diğer MP", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 11, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 11, "Getir", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 11, "HB Marketplace", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 11, "HB Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 11, "Yemeksepeti", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 12, "Amazon", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 12, "Diğer MP", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 12, "Diğer Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 12, "Getir", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 12, "HB Marketplace", "MP", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 12, "HB Retail", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0], [2026, 12, "Yemeksepeti", "Retail", 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]];      // [y,m,group,channel,niv,units,net,orders,afili,loreal]
+const PURCH=[[2026, 1, 77405118.1499999, 92886141.77999988, 234342.0], [2026, 2, 74066346.2500001, 88879615.50000012, 216092.0], [2026, 3, 58998595.2, 70798314.24, 201306.0], [2026, 4, 89234777.98, 107081733.576, 264203.0], [2026, 5, 99220858.0000001, 119065029.60000013, 300903.0], [2026, 6, 104449120.75, 125338944.89999999, 274787.0], [2026, 7, 63809395.96, 76571275.152, 128050.0], [2026, 8, 67933882.0, 81520658.39999999, 181262.0], [2025, 1, 48612613.45, 58335136.14, 131454.0], [2025, 2, 48812916.3499999, 58575499.61999988, 174590.0], [2025, 3, 33518377.0, 40222052.4, 169144.0], [2025, 4, 61755833.06, 74106999.672, 213968.0], [2025, 5, 64532154.3, 77438585.16, 251696.0], [2025, 6, 87147166.36, 104576599.632, 318340.0], [2025, 7, 64927168.0, 77912601.6, 254291.0], [2025, 8, 85978239.9, 103173887.88000001, 314901.0], [2025, 9, 95848675.01, 115018410.01200001, 268690.0], [2025, 10, 185715962.77, 222859155.324, 557618.0], [2025, 11, 81821218.33, 98185461.99599999, 266461.0], [2025, 12, 31056590.01, 37267908.012, 139363.0], [2024, 1, 39813829.43, 47776595.316, 169350.0], [2024, 2, 41957026.59, 50348431.908, 197411.0], [2024, 3, 45753220.88, 54903865.056, 150777.0], [2024, 4, 55164849.99, 66197819.988, 161799.0], [2024, 5, 59667387.0, 71600864.39999999, 275746.0], [2024, 6, 91292147.0, 109550576.39999999, 401008.0], [2024, 7, 77265534.92, 92718641.904, 302310.0], [2024, 8, 72919622.8, 87503547.36, 293296.0], [2024, 9, 66112149.24, 79334579.088, 266394.0], [2024, 10, 218343692.03, 262012430.436, 927167.0], [2024, 11, 79981611.18, 95977933.41600001, 273859.0], [2024, 12, 35051207.72, 42061449.0, 130297.0], [2023, 1, 16261616.2, 19513939.439999998, 206454.0], [2023, 2, 28283220.92, 33939865.104, 322873.0], [2023, 3, 23989001.65, 28786801.979999997, 270547.0], [2023, 4, 31422720.7, 37707264.839999996, 348821.0], [2023, 5, 32403225.42, 38883870.504, 298686.0], [2023, 6, 36068780.46, 43282536.552, 361365.0], [2023, 7, 39974711.13, 47969653.356, 338595.0], [2023, 8, 38205026.18, 45846031.416, 326895.0], [2023, 9, 45429779.16, 54515734.99199999, 309745.0], [2023, 10, 78166144.46, 93799373.35199998, 501631.0], [2023, 11, 51290469.03, 61548562.835999995, 290528.0], [2023, 12, 42085811.3, 50502973.559999995, 278767.0]];    // [y,m,netAlim,kdvli,adet]
+const STOCK=[["OCAK", 276449315.290872, 91.6374569111211, 97, 121], ["ŞUBAT", 314128683.51335, 101.96528213737717, 100, 116], ["MART", 299126918.227244, 95.01364388200798, 96, 112], ["NİSAN", null, 0, 99, 122], ["MAYIS", 284037011.304746, 96.68252457168987, 121, 106], ["HAZİRAN", 343198321.627654, 125.8637561553053, 116, 88], ["TEMMUZ", 350696768.514404, 128.00684748054914, 106, 99], ["AĞUSTOS", 342883352.087238, 121.2060581602003, 135, 115], ["EYLÜL", null, null, 135, 102], ["EKİM", null, null, 152.491885861932, 146], ["KASIM", null, null, 118.019797288058, 104], ["ARALIK", null, null, 82.3687224979239, 113]];    // [ay, stokDeger2026, gun2026, gun2025, gun2024]
+const TARGETS={2024:{si:881920230.3,so:813016062.8,gun:114},2025:{si:986000000,so:1000071294,gun:75}};
+const YEARS=[2023,2024,2025,2026];
+const MN=['Oca','Şub','Mar','Nis','May','Haz','Tem','Ağu','Eyl','Eki','Kas','Ara'];
+const GROUPS=['HB Marketplace','Getir','HB Retail','Yemeksepeti','Amazon','Diğer'];
+const GCOL={'HB Marketplace':'--c1','Getir':'--c2','HB Retail':'--c3','Yemeksepeti':'--c4','Amazon':'--c5','Diğer':'--cg'};
+const YCOL={2023:'--y23',2024:'--y24',2025:'--y25',2026:'--y26'};
+const R=DATA.map(a=>({y:a[0],m:a[1],g:a[2].startsWith('Diğer')?'Diğer':a[2],ch:a[3],niv:a[4],u:a[5],net:a[6],ord:a[7],af:a[8],lo:a[9]}));
+let state={p:'ytd'};
+try{const s=localStorage.getItem('lor_p');if(s==='full'||s==='ytd')state.p=s}catch(e){}
+
+/* ---------- helpers ---------- */
+const nf=(d)=>new Intl.NumberFormat('tr-TR',{minimumFractionDigits:d,maximumFractionDigits:d});
+const f1=nf(1),f0=nf(0),f2=nf(2);
+const M=v=>f1.format(v/1e6);
+const P=(v,d=1)=>nf(d).format(v*100)+'%';
+const SP=(v,d=0)=>(v>=0?'+':'−')+nf(d).format(Math.abs(v)*100)+'%';
+const mEnd=y=>state.p==='ytd'?8:(y===2026?8:12);
+const ylab=y=>(y===2026?(state.p==='ytd'?'2026':'2026 (8 ay)'):String(y));
+function sum(field,y,f,mx){let s=0;const me=mx??mEnd(y);for(const r of R)if(r.y===y&&r.m<=me&&(!f||f(r)))s+=r[field];return s}
+function purch(y,mx){let s=0,a=0,k=0;const me=mx??mEnd(y);for(const p of PURCH)if(p[0]===y&&p[1]<=me){s+=p[2];k+=p[3];a+=p[4]}return {net:s,kdv:k,adet:a}}
+const el=id=>document.getElementById(id);
+const NS='http://www.w3.org/2000/svg';
+function S(tag,attrs,style,parent){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(style)for(const k in style)e.style[k]=style[k];if(parent)parent.appendChild(e);return e}
+function T(parent,x,y,txt,cls,anchor){const t=S('text',{x,y},null,parent);if(cls)t.setAttribute('class',cls);if(anchor)t.setAttribute('text-anchor',anchor);t.textContent=txt;return t}
+function niceStep(max,n){const raw=max/n;const p=Math.pow(10,Math.floor(Math.log10(raw)));const f=raw/p;const s=f<=1?1:f<=2?2:f<=2.5?2.5:f<=5?5:10;return s*p}
+function scaleOf(min,max,n=4){const step=niceStep(Math.max(max-Math.min(min,0),1e-9),n);const lo=min<0?Math.floor(min/step)*step:0;const hi=Math.ceil(max/step)*step;return{lo,hi,step}}
+function rtop(x,y,w,h,r){r=Math.max(0,Math.min(r,w/2,h));return`M${x},${y+h}V${y+r}Q${x},${y} ${x+r},${y}H${x+w-r}Q${x+w},${y} ${x+w},${y+r}V${y+h}Z`}
+function legend(id,items){const h=el(id);h.innerHTML=items.map(i=>`<span><i style="background:var(${i.c})"></i>${i.n}</span>`).join('')}
+const tip=el('tip');
+function showTip(e,html){tip.innerHTML=html;tip.style.display='block';const w=tip.offsetWidth,h=tip.offsetHeight;let x=e.clientX+14,y=e.clientY+14;if(x+w>innerWidth-8)x=e.clientX-w-14;if(y+h>innerHeight-8)y=e.clientY-h-14;tip.style.left=Math.max(8,x)+'px';tip.style.top=Math.max(8,y)+'px'}
+function hideTip(){tip.style.display='none'}
+function hov(node,html){node.addEventListener('mousemove',e=>showTip(e,html));node.addEventListener('mouseleave',hideTip);node.addEventListener('touchstart',e=>{const t=e.touches[0];showTip(t,html)},{passive:true})}
+const trow=(c,n,v)=>`<div class="r"><span><i style="background:var(${c})"></i>${n}</span><b>${v}</b></div>`;
+
+/* ---------- chart: grouped vertical bars ---------- */
+function bars(host,o){
+  host.innerHTML='';const W=host.clientWidth||320,H=o.h||250;const L=o.L||40,Rm=8,Tm=20,B=28;
+  const svg=S('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,role:'img','aria-label':o.aria||''},null,host);
+  const all=o.series.flatMap(s=>s.vals.filter(v=>v!=null));const sc=scaleOf(0,Math.max(...all)*1.02,4);
+  const pw=W-L-Rm,ph=H-Tm-B;const y=v=>Tm+ph-(v-sc.lo)/(sc.hi-sc.lo)*ph;
+  const g=S('g',{class:'grid'},null,svg);
+  for(let v=sc.lo;v<=sc.hi+1e-9;v+=sc.step){S('line',{x1:L,x2:W-Rm,y1:y(v),y2:y(v)},null,g);T(svg,L-6,y(v)+4,(o.yf||(x=>f0.format(x)))(v),'',"end")}
+  const n=o.series.length,gw=pw/o.cats.length,bw=Math.min(o.maxBw||38,(gw*0.72-(n-1)*3)/n),tw=bw*n+(n-1)*3;
+  o.cats.forEach((c,i)=>{
+    const x0=L+i*gw+(gw-tw)/2;
+    T(svg,L+i*gw+gw/2,H-9,c,'tt',"middle");
+    o.series.forEach((s,j)=>{const v=s.vals[i];if(v==null)return;const bx=x0+j*(bw+3),by=y(v),bh=Tm+ph-by;
+      const col=o.colorBy?o.colorBy[i]:s.c;
+      const p=S('path',{d:rtop(bx,by,bw,bh,4)},{fill:`var(${col})`},svg);
+      hov(p,o.tip(i,j));
+      if(o.labels!==false&&gw>56)T(svg,bx+bw/2,by-5,(o.vf||(x=>f1.format(x)))(v),'vl',"middle")});
+  });
+  S('line',{x1:L,x2:W-Rm,y1:y(0),y2:y(0)},null,svg).setAttribute('class','zero');
+}
+
+/* ---------- chart: lines with crosshair ---------- */
+function lines(host,o){
+  host.innerHTML='';const W=host.clientWidth||320,H=o.h||250;const L=o.L||42,Rm=o.R||30,Tm=14,B=26;
+  const svg=S('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,role:'img','aria-label':o.aria||''},null,host);
+  const all=o.series.flatMap(s=>s.vals.filter(v=>v!=null));const mn=Math.min(0,...all);const sc=scaleOf(mn,Math.max(...all),4);
+  const pw=W-L-Rm,ph=H-Tm-B,n=o.cats.length;const x=i=>L+(n>1?i*pw/(n-1):0);const y=v=>Tm+ph-(v-sc.lo)/(sc.hi-sc.lo)*ph;
+  const g=S('g',{class:'grid'},null,svg);
+  for(let v=sc.lo;v<=sc.hi+1e-9;v+=sc.step){S('line',{x1:L,x2:W-Rm,y1:y(v),y2:y(v)},null,g);T(svg,L-6,y(v)+4,(o.yf||(q=>f0.format(q)))(v),'',"end")}
+  if(sc.lo<0)S('line',{x1:L,x2:W-Rm,y1:y(0),y2:y(0)},null,svg).setAttribute('class','zero');
+  o.cats.forEach((c,i)=>{if(o.xt?o.xt(i):true)T(svg,x(i),H-8,o.xl?o.xl(i):c,'tt',"middle")});
+  o.series.forEach(s=>{
+    let d='',pen=false;s.vals.forEach((v,i)=>{if(v==null){pen=false;return}d+=(pen?'L':'M')+x(i)+','+y(v);pen=true});
+    if(o.area&&s.area){const pts=s.vals.map((v,i)=>[x(i),y(v)]);S('path',{d:`M${pts[0][0]},${y(0)}L${pts.map(p=>p.join(',')).join('L')}L${pts[pts.length-1][0]},${y(0)}Z`},{fill:`var(${s.c})`,opacity:.14},svg)}
+    S('path',{d,fill:'none','stroke-linejoin':'round','stroke-linecap':'round','stroke-width':s.w||2},{stroke:`var(${s.c})`,strokeDasharray:s.dash||'none'},svg);
+    // isolated points + endpoint
+    s.vals.forEach((v,i)=>{if(v==null)return;const isolated=(s.vals[i-1]==null)&&(s.vals[i+1]==null);if(isolated)S('circle',{cx:x(i),cy:y(v),r:3},{fill:`var(${s.c})`},svg)});
+    let last=-1;s.vals.forEach((v,i)=>{if(v!=null)last=i});
+    if(last>=0&&!o.noEnd&&!s.noEnd){S('circle',{cx:x(last),cy:y(s.vals[last]),r:4,'stroke-width':2},{fill:`var(${s.c})`,stroke:'var(--card)'},svg);if(s.end)T(svg,x(last)+7,y(s.vals[last])+4,s.end,'tt',"start")}
+  });
+  const cross=S('line',{y1:Tm,y2:Tm+ph,'stroke-width':1},{stroke:'var(--muted)',display:'none'},svg);
+  const slot=pw/Math.max(n-1,1);
+  for(let i=0;i<n;i++){const r=S('rect',{x:x(i)-slot/2,y:Tm,width:slot,height:ph},{fill:'transparent'},svg);
+    const on=e=>{cross.setAttribute('x1',x(i));cross.setAttribute('x2',x(i));cross.style.display='';showTip(e,o.tip(i))};
+    r.addEventListener('mousemove',on);r.addEventListener('mouseleave',()=>{cross.style.display='none';hideTip()});
+    r.addEventListener('touchstart',e=>on(e.touches[0]),{passive:true})}
+}
+
+/* ---------- chart: 100% stacked vertical bars ---------- */
+function stack(host,o){
+  host.innerHTML='';const W=host.clientWidth||320,H=o.h||280;const L=36,Rm=8,Tm=10,B=28;
+  const svg=S('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,role:'img','aria-label':o.aria||''},null,host);
+  const pw=W-L-Rm,ph=H-Tm-B;const y=v=>Tm+ph-v*ph;
+  const g=S('g',{class:'grid'},null,svg);
+  [0,.25,.5,.75,1].forEach(v=>{S('line',{x1:L,x2:W-Rm,y1:y(v),y2:y(v)},null,g);T(svg,L-6,y(v)+4,Math.round(v*100)+'%','',"end")});
+  const gw=pw/o.cats.length,bw=Math.min(72,gw*0.62);
+  o.cats.forEach((c,i)=>{
+    const x0=L+i*gw+(gw-bw)/2;T(svg,x0+bw/2,H-9,c,'tt',"middle");
+    const tot=o.series.reduce((a,s)=>a+s.vals[i],0);let acc=0;
+    o.series.forEach((s,j)=>{const sh=s.vals[i]/tot;if(sh<=0)return;const y1=y(acc+sh),h=ph*sh;
+      const r=S('rect',{x:x0,y:y1,width:bw,height:Math.max(h,0),'stroke-width':2},{fill:`var(${s.c})`,stroke:'var(--card)'},svg);
+      hov(r,o.tip(i,j,sh));
+      if(h>=17)T(svg,x0+bw/2,y1+h/2+4,P(sh,sh<.1?1:0),'',"middle").style.fill=(s.lt?'#fff':'#0b0b0b');
+      acc+=sh});
+  });
+}
+
+/* ---------- chart: horizontal diverging bars ---------- */
+function hdiv(host,items){
+  host.innerHTML='';const W=host.clientWidth||320,rowH=30,H=items.length*rowH+12;const Lb=Math.min(120,W*.34),Rm=44;
+  const svg=S('svg',{viewBox:`0 0 ${W} ${H}`,width:W,height:H,role:'img','aria-label':'Platform bazında değişim'},null,host);
+  const mx=Math.max(...items.map(i=>Math.abs(i.v)),.1);const pw=W-Lb-Rm-44;const zero=Lb+pw*(Math.max(0,-Math.min(...items.map(i=>i.v),0))/(mx+Math.max(0,-Math.min(...items.map(i=>i.v),0)))) ;
+  const neg=Math.max(0,-Math.min(...items.map(i=>i.v),0)),pos=Math.max(...items.map(i=>i.v),0);const tot=neg+pos||1;const z=Lb+44+pw*neg/tot,k=pw/tot;
+  items.forEach((it,i)=>{const cy=6+i*rowH;T(svg,Lb-8,cy+rowH/2+1,it.label,'tt',"end");
+    const w=Math.abs(it.v)*k,x=it.v>=0?z:z-w;
+    const r=S('rect',{x,y:cy+4,width:Math.max(w,1),height:rowH-12,rx:3},{fill:`var(${it.v>=0?'--pos':'--neg'})`},svg);
+    hov(r,it.tip);
+    T(svg,it.v>=0?x+w+6:x-6,cy+rowH/2+2,SP(it.v,Math.abs(it.v)<0.1?1:0),'vl',it.v>=0?"start":"end")});
+  S('line',{x1:z,x2:z,y1:0,y2:H},null,svg).setAttribute('class','zero');
+}
+
+/* ---------- table helpers ---------- */
+function heat(v){if(v==null||!isFinite(v))return'';const a=Math.min(Math.abs(v),1)*.55;return`background:color-mix(in srgb,var(${v>=0?'--pos':'--neg'}) ${Math.round(a*100)}%,transparent)`}
+
+/* ---------- build ---------- */
+function groupSum(y,g,mx){return sum('niv',y,r=>r.g===g,mx)}
+function renderPano(){
+  const ys=YEARS;
+  // KPI strip (always like-for-like Jan-Aug)
+  const k=(f)=>[f(2025),f(2026)];
+  const niv25=sum('niv',2025,0,8),niv26=sum('niv',2026,0,8),al25=purch(2025,8).net,al26=purch(2026,8).net;
+  const rt25=sum('niv',2025,r=>r.ch==='Retail',8)/niv25,rt26=sum('niv',2026,r=>r.ch==='Retail',8)/niv26;
+  const u25=sum('u',2025,0,8),u26=sum('u',2026,0,8);
+  const chip=(v)=>`<span class="chip ${v>=0?'up':'dn'}">${SP(v,1)}</span>`;
+  el('kpis').innerHTML=[
+    ['Alım (net)','₺ '+M(al26)+' M',chip(al26/al25-1)+' · geçen yıl '+M(al25)],
+    ['Çıkış (Sellout NIV)','₺ '+M(niv26)+' M',chip(niv26/niv25-1)+' · geçen yıl '+M(niv25)],
+    ['Alım / çıkış oranı',f2.format(al26/niv26)+'x','geçen yıl '+f2.format(al25/niv25)+'x'],
+    ['Retail payı',P(rt26),'geçen yıl '+P(rt25)+' · Marketplace '+P(1-rt26)],
+    ['Satılan adet',f2.format(u26/1e6)+' M',chip(u26/u25-1)+' · geçen yıl '+f2.format(u25/1e6)+' M'],
+    ['Adet başına çıkış',f0.format(niv26/u26)+' ₺',chip((niv26/u26)/(niv25/u25)-1)+' · geçen yıl '+f0.format(niv25/u25)+' ₺']
+  ].map(a=>`<div class="kpi"><div class="l">${a[0]}</div><div class="v">${a[1]}</div><div class="d">${a[2]}</div></div>`).join('');
+  el('kpiNote').textContent='2026 Ocak–Ağustos, geçen yılın aynı dönemiyle karşılaştırıldı. Dönem seçimi bu şeritte değişmez.';
+
+  const cats=ys.map(ylab);const yc=ys.map(y=>YCOL[y]);
+  const nivY=ys.map(y=>sum('niv',y)),alY=ys.map(y=>purch(y).net);
+  const per=state.p==='ytd'?'Ocak–Ağustos':'tam yıl (2026 için Ocak–Ağustos)';
+
+  // 1 alım
+  el('lead1').textContent=`${per}: ${ys.map((y,i)=>ylab(y)+' '+M(alY[i])).join(' → ')} milyon ₺. 2026'da alım geçen yılın aynı dönemine göre ${SP(al26/al25-1)} arttı.`;
+  bars(el('c1a'),{cats,series:[{name:'Net alım',c:'--c2',vals:alY.map(v=>v)}],colorBy:yc,yf:v=>f0.format(v/1e6),vf:v=>M(v),aria:'Yıllık net alım',
+    tip:(i)=>`<b>${cats[i]}</b>${trow(yc[i],'Net alım','₺ '+M(alY[i])+' M')}${trow(yc[i],'KDV dahil','₺ '+M(purch(ys[i]).kdv)+' M')}${trow(yc[i],'Adet',f0.format(purch(ys[i]).adet))}`});
+  const mcats=MN,mkAl=ys.map(y=>MN.map((_,m)=>{const p=PURCH.find(q=>q[0]===y&&q[1]===m+1);return p?p[2]:null}));
+  legend('l1b',ys.map(y=>({c:YCOL[y],n:String(y)})));
+  lines(el('c1b'),{cats:mcats,series:ys.map((y,i)=>({name:String(y),c:YCOL[y],vals:mkAl[i],end:String(y),w:y===2026?3:2})),yf:v=>f0.format(v/1e6),aria:'Aylık net alım',
+    tip:i=>`<b>${MN[i]}</b>`+ys.map((y,j)=>mkAl[j][i]==null?'':trow(YCOL[y],y,'₺ '+M(mkAl[j][i])+' M')).join('')});
+
+  // 2 çıkış
+  el('lead2').textContent=`${per}: ${ys.map((y,i)=>ylab(y)+' '+M(nivY[i])).join(' → ')} milyon ₺. 2026 Ocak–Ağustos çıkışı geçen yıla göre ${SP(niv26/niv25-1,1)}.`;
+  bars(el('c2a'),{cats,series:[{name:'Çıkış',c:'--c1',vals:nivY}],colorBy:yc,yf:v=>f0.format(v/1e6),vf:v=>M(v),aria:'Yıllık çıkış',
+    tip:i=>{const y=ys[i];return `<b>${cats[i]}</b>${trow(yc[i],'Sellout NIV','₺ '+M(nivY[i])+' M')}${trow(yc[i],'Net satış','₺ '+M(sum('net',y))+' M')}${trow(yc[i],'Afili gross','₺ '+M(sum('af',y))+' M')}${trow(yc[i],"L'Oréal gross",'₺ '+M(sum('lo',y))+' M')}${trow(yc[i],'Adet',f0.format(sum('u',y)))}`}});
+  const mkNiv=ys.map(y=>MN.map((_,m)=>{if(y===2026&&m>=8)return null;return sum('niv',y,r=>r.m===m+1,m+1)}));
+  legend('l2b',ys.map(y=>({c:YCOL[y],n:String(y)})));
+  lines(el('c2b'),{cats:MN,series:ys.map((y,i)=>({name:String(y),c:YCOL[y],vals:mkNiv[i],end:String(y),w:y===2026?3:2})),yf:v=>f0.format(v/1e6),aria:'Aylık çıkış',
+    tip:i=>`<b>${MN[i]}</b>`+ys.map((y,j)=>mkNiv[j][i]==null?'':trow(YCOL[y],y,'₺ '+M(mkNiv[j][i])+' M')).join('')});
+
+  // 3 kanal
+  const mp=ys.map(y=>sum('niv',y,r=>r.ch==='MP')),rt=ys.map((y,i)=>nivY[i]-mp[i]);
+  el('lead3').textContent=`Marketplace payı ${ys.map((y,i)=>ylab(y)+' '+P(mp[i]/nivY[i])).join(' → ')}. Retail payı ${P(rt[3]/nivY[3])} ile ilk kez Marketplace'i geçti (2023'ten bu yana ilk kez Retail ağırlığı yeniden yüksek).`;
+  legend('l3a',[{c:'--c7',n:'Marketplace'},{c:'--c6',n:'Retail'}]);legend('l3b',[{c:'--c7',n:'Marketplace'},{c:'--c6',n:'Retail'}]);
+  stack(el('c3a'),{cats,series:[{n:'Marketplace',c:'--c7',lt:true,vals:mp},{n:'Retail',c:'--c6',lt:true,vals:rt}],aria:'Kanal payı',
+    tip:(i,j,sh)=>`<b>${cats[i]}</b>${trow(j?'--c6':'--c7',j?'Retail':'Marketplace','%'+nf(1).format(sh*100))}${trow(j?'--c6':'--c7','Tutar','₺ '+M((j?rt:mp)[i])+' M')}`});
+  bars(el('c3b'),{cats,series:[{name:'Marketplace',c:'--c7',vals:mp},{name:'Retail',c:'--c6',vals:rt}],yf:v=>f0.format(v/1e6),vf:v=>f0.format(v/1e6),aria:'Kanal bazında çıkış',
+    tip:(i,j)=>`<b>${cats[i]}</b>${trow(j?'--c6':'--c7',j?'Retail':'Marketplace','₺ '+M((j?rt:mp)[i])+' M')}`});
+
+  // 4 platform
+  const gv={};GROUPS.forEach(g=>gv[g]=ys.map(y=>groupSum(y,g)));
+  const sob=(g,i)=>gv[g][i]/nivY[i];
+  const hbm=gv['HB Marketplace'],hbr=gv['HB Retail'];
+  el('lead4').textContent=`2026 Ocak–Ağustos'ta en büyük pay Hepsiburada Marketplace'te (${P(gv['HB Marketplace'][3]/nivY[3])}); Getir ${P(gv['Getir'][3]/nivY[3])} ile ikinci. İkisi birlikte çıkışın ${P((gv['HB Marketplace'][3]+gv['Getir'][3])/nivY[3])}'ünü taşıyor (2025 Ocak–Ağustos: ${P((groupSum(2025,'HB Marketplace',8)+groupSum(2025,'Getir',8))/niv25)}).`;
+  legend('l4a',GROUPS.map(g=>({c:GCOL[g],n:g})));
+  stack(el('c4a'),{cats,series:GROUPS.map(g=>({n:g,c:GCOL[g],vals:gv[g],lt:['--c1','--c2','--c3'].includes(GCOL[g])})),aria:'Platform payı',
+    tip:(i,j,sh)=>`<b>${cats[i]} · ${GROUPS[j]}</b>${trow(GCOL[GROUPS[j]],'Pay','%'+nf(1).format(sh*100))}${trow(GCOL[GROUPS[j]],'Tutar','₺ '+M(gv[GROUPS[j]][i])+' M')}`});
+  const s25=g=>groupSum(2025,g,8)/niv25,s26=g=>groupSum(2026,g,8)/niv26;
+  el('t4').innerHTML=`<table><thead><tr><th>Platform</th>${cats.map(c=>`<th>${c}</th>`).join('')}<th>Δ puan</th></tr></thead><tbody>`+GROUPS.map(g=>{const d=(s26(g)-s25(g))*100;return `<tr><td><i style="display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:8px;background:var(${GCOL[g]})"></i>${g}</td>${ys.map((y,i)=>`<td>${nf(1).format(sob(g,i)*100)}</td>`).join('')}<td>${d>=0?'+':'−'}${nf(1).format(Math.abs(d))}</td></tr>`}).join('')+`<tr class="tot"><td>Toplam</td>${ys.map(()=>'<td>100,0</td>').join('')}<td></td></tr></tbody></table>`;
+  el('n4').innerHTML=`Hepsiburada (Retail + Marketplace) toplamı: ${ys.map((y,i)=>cats[i]+' %'+nf(1).format((hbm[i]+hbr[i])/nivY[i]*100)).join(' · ')}. Amazon tüm kırılımlarıyla (FBA, Marketplace, Seller Flex) tek platform.`;
+
+  // 5 alım vs çıkış
+  const cov=ys.map((y,i)=>alY[i]/nivY[i]);
+  el('lead5').textContent=`Alım/çıkış oranı ${ys.map((y,i)=>ylab(y)+' '+f2.format(cov[i])).join(' → ')}. 1,00'ın üstü stok artışı, altı stok eritme anlamına gelir. Kümülatif stok birikimi Ağustos 2026 itibarıyla ₺ ${M(cum()[cum().length-1])} M.`;
+  legend('l5a',[{c:'--c2',n:'Alım (net)'},{c:'--c1',n:'Çıkış (Sellout NIV)'}]);
+  bars(el('c5a'),{cats,series:[{name:'Alım',c:'--c2',vals:alY},{name:'Çıkış',c:'--c1',vals:nivY}],yf:v=>f0.format(v/1e6),vf:v=>f0.format(v/1e6),aria:'Alım ve çıkış',
+    tip:(i,j)=>`<b>${cats[i]}</b>${trow('--c2','Alım','₺ '+M(alY[i])+' M')}${trow('--c1','Çıkış','₺ '+M(nivY[i])+' M')}${trow('--ink','Fark (alım−çıkış)','₺ '+M(alY[i]-nivY[i])+' M')}${trow('--ink','Oran',f2.format(cov[i])+'x')}`});
+  el('r5a').innerHTML=`<div class="tblwrap"><table><tbody><tr><td>Alım / çıkış</td>${cov.map(c=>`<td><span class="chip ${c>1.04?'dn':c<0.96?'up':''}" style="${c>=.96&&c<=1.04?'background:var(--grid)':''}">${f2.format(c)}x</span></td>`).join('')}</tr><tr><td>Fark, ₺ M</td>${ys.map((y,i)=>`<td>${(alY[i]-nivY[i]>=0?'+':'−')+f1.format(Math.abs(alY[i]-nivY[i])/1e6)}</td>`).join('')}</tr></tbody></table></div><p class="note">Turuncu etiket alımın çıkıştan fazla olduğunu (stok artışı), mavi etiket stok eridiğini gösterir.</p>`;
+  const tl=timeline();
+  legend('l5b',[{c:'--c2',n:'Alım (net)'},{c:'--c1',n:'Çıkış (Sellout NIV)'}]);
+  lines(el('c5b'),{cats:tl.labels,series:[{name:'Alım',c:'--c2',vals:tl.al,end:'',w:2},{name:'Çıkış',c:'--c1',vals:tl.so,end:'',w:2}],yf:v=>f0.format(v/1e6),xt:i=>i%6===0,R:12,aria:'Aylık alım ve çıkış',
+    tip:i=>`<b>${tl.labels[i]}</b>${trow('--c2','Alım','₺ '+M(tl.al[i])+' M')}${trow('--c1','Çıkış','₺ '+M(tl.so[i])+' M')}`});
+  const cm=cum();
+  lines(el('c5c'),{cats:tl.labels,series:[{name:'Kümülatif',c:'--c3',vals:cm,area:true,w:2.5}],yf:v=>f0.format(v/1e6),xt:i=>i%6===0,R:12,aria:'Kümülatif stok birikimi',noEnd:false,
+    tip:i=>`<b>${tl.labels[i]}</b>${trow('--c3','Kümülatif','₺ '+M(cm[i])+' M')}${trow('--ink','Aylık fark','₺ '+M(tl.al[i]-tl.so[i])+' M')}`});
+  const sy={2024:STOCK.map(r=>r[4]),2025:STOCK.map(r=>r[3]),2026:STOCK.map(r=>r[2]&&r[2]>0?r[2]:null)};
+  legend('l5d',[2024,2025,2026].map(y=>({c:YCOL[y],n:String(y)})));
+  lines(el('c5d'),{cats:MN,series:[2024,2025,2026].map(y=>({name:String(y),c:YCOL[y],vals:sy[y],end:String(y),w:y===2026?3:2})),yf:v=>f0.format(v),aria:'Stok günü',
+    tip:i=>`<b>${MN[i]}</b>`+[2024,2025,2026].map(y=>sy[y][i]==null?'':trow(YCOL[y],y,f0.format(sy[y][i])+' gün')).join('')});
+
+  // 6 platform karşılaştırma
+  const plats=[['Getir','Getir',r=>r.g==='Getir'],['Yemeksepeti (Banabi)','Yemeksepeti',r=>r.g==='Yemeksepeti'],['Hepsiburada Retail','HB Retail',r=>r.g==='HB Retail'],['Hepsiburada Marketplace','HB Marketplace',r=>r.g==='HB Marketplace'],['Hepsiburada toplam','HB',r=>r.g==='HB Retail'||r.g==='HB Marketplace'],['Amazon (tüm kırılımlar)','Amazon',r=>r.g==='Amazon'],['Diğer platformlar','Diğer',r=>r.g==='Diğer']];
+  const pv=plats.map(p=>ys.map(y=>sum('niv',y,p[2])));
+  const pv8=plats.map(p=>ys.map(y=>sum('niv',y,p[2],8)));
+  const mini=el('mini');mini.innerHTML='';
+  plats.forEach((p,pi)=>{const d=document.createElement('div');d.className='panel';const gr=pv8[pi][3]/pv8[pi][2]-1;
+    d.innerHTML=`<h3>${p[0]}</h3><p class="cap">₺ M · 2026/2025 Ocak–Ağu <b style="color:var(--ink)">${isFinite(gr)?SP(gr):'–'}</b></p><div class="chart"></div>`;mini.appendChild(d);
+    bars(d.querySelector('.chart'),{cats:ys.map(y=>y===2026&&state.p==='full'?'2026*':String(y)),series:[{name:p[0],c:'--c1',vals:pv[pi]}],colorBy:yc,h:170,L:34,yf:v=>f0.format(v/1e6),vf:v=>f0.format(v/1e6),aria:p[0],maxBw:30,
+      tip:i=>`<b>${p[0]} · ${cats[i]}</b>${trow(yc[i],'Çıkış','₺ '+M(pv[pi][i])+' M')}${trow(yc[i],'Pay','%'+nf(1).format(pv[pi][i]/nivY[i]*100))}`})});
+  const tab=(arr)=>arr;
+  const yoy=(a,b)=>a>0?b/a-1:null;
+  const rowsT=plats.map((p,pi)=>{const v=pv[pi],v8=pv8[pi];return{n:p[0],v,g:[yoy(v[0],v[1]),yoy(v[1],v[2]),yoy(v8[2],v8[3])]}});
+  const tot=ys.map(y=>sum('niv',y)),tot8=ys.map(y=>sum('niv',y,0,8));
+  const tg=[yoy(tot[0],tot[1]),yoy(tot[1],tot[2]),yoy(tot8[2],tot8[3])];
+  const pc=v=>v==null?'–':SP(v);
+  el('t6').innerHTML=`<table><thead><tr><th>Platform</th>${cats.map(c=>`<th>${c}</th>`).join('')}<th>24/23</th><th>25/24</th><th>26/25*</th></tr></thead><tbody>`+rowsT.map(r=>`<tr><td>${r.n}</td>${r.v.map(v=>`<td>${f1.format(v/1e6)}</td>`).join('')}${r.g.map(g=>`<td style="${heat(g==null?null:Math.max(-1,Math.min(1,g/1.5)))}">${pc(g)}</td>`).join('')}</tr>`).join('')+`<tr class="tot"><td>Toplam</td>${tot.map(v=>`<td>${f1.format(v/1e6)}</td>`).join('')}${tg.map(g=>`<td style="${heat(g==null?null:Math.max(-1,Math.min(1,g/1.5)))}">${pc(g)}</td>`).join('')}</tr></tbody></table><p class="note">* 2026/2025 her zaman Ocak–Ağustos'a göre. 24/23 ve 25/24 seçili döneme göre; Ocak–Ağustos seçiliyken aynı dönemler, tam yıl seçiliyken 12 aylık toplamlardır.</p>`;
+  el('lead6').textContent=`2026 Ocak–Ağustos'ta Getir ${SP(rowsT[0].g[2])}, Yemeksepeti ${SP(rowsT[1].g[2])}, Amazon ${SP(rowsT[5].g[2])}, Hepsiburada Marketplace ${SP(rowsT[3].g[2])} değişti; Hepsiburada Retail (bizim sevkiyatımız) ${SP(rowsT[2].g[2])}.`;
+  const hd=rowsT.filter(r=>r.g[2]!=null&&r.n!=='Hepsiburada toplam').map(r=>({label:r.n.replace(' (tüm kırılımlar)','').replace(' (Banabi)',''),v:r.g[2],tip:`<b>${r.n}</b>${trow(v26c(),'2026 Oca–Ağu','₺ '+M(r.v.length?pv8[rowsT.indexOf(r)][3]:0)+' M')}${trow('--ink','2025 Oca–Ağu','₺ '+M(pv8[rowsT.indexOf(r)][2])+' M')}`})).sort((a,b)=>b.v-a.v);
+  hdiv(el('c6b'),hd);
+
+  // ek analizler
+  const un=ys.map(y=>sum('u',y));
+  bars(el('ca'),{cats,series:[{name:'Adet',c:'--c1',vals:un}],colorBy:yc,yf:v=>f1.format(v/1e6),vf:v=>f2.format(v/1e6),aria:'Satılan adet',tip:i=>`<b>${cats[i]}</b>${trow(yc[i],'Adet',f0.format(un[i]))}`});
+  const uMp=ys.map(y=>sum('u',y,r=>r.ch==='MP')),uRt=ys.map((y,i)=>un[i]-uMp[i]);
+  const ppu=ys.map((y,i)=>nivY[i]/un[i]),ppuM=ys.map((y,i)=>mp[i]/uMp[i]),ppuR=ys.map((y,i)=>rt[i]/uRt[i]);
+  legend('lb',[{c:'--c7',n:'Marketplace'},{c:'--c6',n:'Retail'}]);
+  bars(el('cb'),{cats,series:[{name:'Marketplace',c:'--c7',vals:ppuM},{name:'Retail',c:'--c6',vals:ppuR}],yf:v=>f0.format(v),vf:v=>f0.format(v),aria:'Adet başına çıkış değeri',
+    tip:(i,j)=>`<b>${cats[i]}</b>${trow('--c7','Marketplace',f0.format(ppuM[i])+' ₺')}${trow('--c6','Retail',f0.format(ppuR[i])+' ₺')}${trow('--ink','Toplam',f0.format(ppu[i])+' ₺')}`});
+  const ordY=ys.map(y=>sum('ord',y)),mpNet=ys.map(y=>sum('net',y,r=>r.ch==='MP')),aov=ys.map((y,i)=>mpNet[i]/ordY[i]);
+  bars(el('cc'),{cats,series:[{name:'Sepet',c:'--c7',vals:aov}],colorBy:yc,yf:v=>f0.format(v),vf:v=>f0.format(v),aria:'Marketplace sepet tutarı',tip:i=>`<b>${cats[i]}</b>${trow(yc[i],'Ort. sepet',f0.format(aov[i])+' ₺')}${trow(yc[i],'Sipariş',f0.format(ordY[i]))}`});
+  el('rc').innerHTML=`<div class="tblwrap"><table><tbody><tr><td>Sipariş (bin)</td>${ordY.map(v=>`<td>${f0.format(v/1e3)}</td>`).join('')}</tr></tbody></table></div>`;
+  const att=(a,b)=>P(a/b,1);
+  const a24=purch(2024,12).net,a25=purch(2025,12).net,so24=sum('niv',2024,0,12),so25=sum('niv',2025,0,12);
+  const f25=sum('niv',2025,0,12)/sum('niv',2025,0,8),proj=niv26*f25;
+  el('proj').innerHTML=`<div class="kpi" style="border:0;padding:0"><div class="v">₺ ${f0.format(proj/1e6)} M</div><div class="d">2026 çıkış göstergesi · 2025'e göre ${SP(proj/so25-1)}</div></div><p class="note">Hesap: 2026 Ocak–Ağustos çıkışı (${M(niv26)} M) × 2025'in tam yıl / Ocak–Ağustos katsayısı (${f2.format(f25)}). Ekim–Aralık çıkışın yaklaşık üçte birini taşıdığı için sonuç, 2026 Kasım kampanyasının geçen yıl kadar güçlü geçmesi varsayımına dayanır.</p>`;
+
+  // özet tablo
+  const rows=[
+    ['Net alım (₺ M)',ys.map(y=>M(purch(y).net))],
+    ['Alım adedi (bin)',ys.map(y=>f0.format(purch(y).adet/1e3))],
+    ['Çıkış, Sellout NIV (₺ M)',ys.map((y,i)=>M(nivY[i]))],
+    ['Net satış (₺ M)',ys.map(y=>M(sum('net',y)))],
+    ['Afili gross (₺ M)',ys.map(y=>M(sum('af',y)))],
+    ["L'Oréal gross (₺ M)",ys.map(y=>M(sum('lo',y)))],
+    ['Satılan adet (bin)',ys.map((y,i)=>f0.format(un[i]/1e3))],
+    ['Marketplace çıkış (₺ M)',mp.map(M)],['Retail çıkış (₺ M)',rt.map(M)],
+    ['Marketplace payı',mp.map((v,i)=>P(v/nivY[i]))],['Retail payı',rt.map((v,i)=>P(v/nivY[i]))],
+    ['Alım / çıkış',cov.map(c=>f2.format(c)+'x')],
+    ['Adet başına çıkış (₺)',ppu.map(v=>f0.format(v))],
+    ['Marketplace sipariş (bin)',ordY.map(v=>f0.format(v/1e3))],['Marketplace ort. sepet (₺)',aov.map(v=>f0.format(v))]];
+  el('tsum').innerHTML=`<table><thead><tr><th></th>${cats.map(c=>`<th>${c}</th>`).join('')}</tr></thead><tbody>`+rows.map(r=>`<tr><td>${r[0]}</td>${r[1].map(v=>`<td>${v}</td>`).join('')}</tr>`).join('')+'</tbody></table>';
+  el('lead7').textContent=state.p==='ytd'?'Dört yıl da Ocak–Ağustos dönemine göre.':'2023–2025 tam yıl, 2026 yalnızca Ocak–Ağustos (8 ay). Yıllar arası doğrudan kıyaslamayın.';
+}
+function v26c(){return '--y26'}
+function timeline(){const labels=[],al=[],so=[];for(const y of YEARS)for(let m=1;m<=12;m++){if(y===2026&&m>8)break;labels.push(MN[m-1]+' '+y);const p=PURCH.find(q=>q[0]===y&&q[1]===m);al.push(p?p[2]:0);so.push(sum('niv',y,r=>r.m===m,m))}return{labels,al,so}}
+function cum(){const t=timeline();let c=0;return t.al.map((a,i)=>(c+=a-t.so[i]))}
+
+function setP(p){state.p=p;try{localStorage.setItem('lor_p',p)}catch(e){}
+  el('pYtd').setAttribute('aria-pressed',p==='ytd');el('pFull').setAttribute('aria-pressed',p==='full');renderAll()}
+el('pYtd').onclick=()=>setP('ytd');el('pFull').onclick=()=>setP('full');
+el('pYtd').setAttribute('aria-pressed',state.p==='ytd');el('pFull').setAttribute('aria-pressed',state.p==='full');
+let rz;addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(renderAll,120)});
+
+const T26={so:1193255000,si:1184395000};
+const PL={si:[108,175,125,96],so:[80,100,120,110]};
+function renderTargets(){
+  const act={so:sum('niv',2026,0,8),si:purch(2026,8).net};
+  const pSo=PL.so.reduce((a,b)=>a+b,0)*1e6,pSi=PL.si.reduce((a,b)=>a+b,0)*1e6;
+  const fy={so:act.so+pSo,si:act.si+pSi},need={so:T26.so-act.so,si:T26.si-act.si};
+  const sg=v=>(v>=0?'+':'−')+f1.format(Math.abs(v)/1e6);
+  const dc=v=>`<span class="chip ${v>=0?'up':'dn'}">${SP(v,1)}</span>`;
+  el('tgtLead').innerHTML=`Sene başı hedef: çıkış ₺ ${f0.format(T26.so/1e6)} M, alım ₺ ${f0.format(T26.si/1e6)} M. Ağustos sonuna kadar çıkış ₺ ${M(act.so)} M, alım ₺ ${M(act.si)} M gerçekleşti. Eylül–Aralık için konuşulan rakamlar eklenince yıl sonu çıkış ₺ ${M(fy.so)} M (hedefin ${P(fy.so/T26.so,1)}'i), alım ₺ ${M(fy.si)} M (hedefin ${P(fy.si/T26.si,1)}'i) oluyor.`;
+  el('tgtKpis').innerHTML=[
+    ['Yıl sonu çıkış sapması',sg(fy.so-T26.so)+' M',dc(fy.so/T26.so-1)+' · beklenti '+f0.format(fy.so/1e6)],
+    ['Yıl sonu alım sapması',sg(fy.si-T26.si)+' M',dc(fy.si/T26.si-1)+' · beklenti '+f0.format(fy.si/1e6)],
+    ['Eyl–Ara çıkış: konuşulan / gereken',f0.format(pSo/1e6)+' / '+f0.format(need.so/1e6),dc(pSo/need.so-1)+' · '+sg(pSo-need.so)+' M'],
+    ['Eyl–Ara alım: konuşulan / gereken',f0.format(pSi/1e6)+' / '+f0.format(need.si/1e6),dc(pSi/need.si-1)+' · '+sg(pSi-need.si)+' M']
+  ].map(a=>`<div class="kpi"><div class="l">${a[0]}</div><div class="v">${a[1]}</div><div class="d">${a[2]}</div></div>`).join('');
+  const bar=(label,col,tg,a,p)=>{const aw=Math.min(a/tg*100,100),pw=Math.min(p/tg*100,100-aw),gap=tg-a-p;
+    return `<div style="margin-bottom:20px"><div style="display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px"><b>${label}</b><span class="sub">Hedef ₺ ${f0.format(tg/1e6)} M</span></div>
+    <div role="img" aria-label="${label}: gerçekleşen ${P(a/tg,1)}, plan ${P(p/tg,1)}" style="display:flex;height:24px;border-radius:4px;overflow:hidden;background:var(--grid);margin-top:6px"><div style="width:${aw}%;background:var(${col})"></div><div style="width:${pw}%;background:var(${col});opacity:.5;border-left:2px solid var(--card)"></div></div>
+    <div class="legend" style="margin:8px 0 0"><span><i style="background:var(${col})"></i>Ocak–Ağu gerçek ${M(a)} (${P(a/tg,1)})</span><span><i style="background:var(${col});opacity:.5"></i>Eyl–Ara ${M(p)} (${P(p/tg,1)})</span><span><i style="background:var(--grid);border:1px solid var(--line)"></i>Hedefe eksik ${M(gap)} (${P(gap/tg,1)})</span></div></div>`};
+  el('tgtBars').innerHTML=bar('Çıkış (sell-out)','--c1',T26.so,act.so,pSo)+bar('Alım (sell-in)','--c2',T26.si,act.si,pSi);
+  const mv=monthVals25();const ms=['Eylül','Ekim','Kasım','Aralık'];
+  const gr=(a,b)=>SP(a/b-1,0);
+  el('tgtMonths').innerHTML=`<table><thead><tr><th>Ay</th><th>Alım</th><th>2025</th><th>Fark</th><th>Çıkış</th><th>2025</th><th>Fark</th></tr></thead><tbody>`+
+   ms.map((m,i)=>`<tr><td>${m}</td><td>${f0.format(PL.si[i])}</td><td>${f1.format(mv.si[i]/1e6)}</td><td>${gr(PL.si[i]*1e6,mv.si[i])}</td><td>${f0.format(PL.so[i])}</td><td>${f1.format(mv.so[i]/1e6)}</td><td>${gr(PL.so[i]*1e6,mv.so[i])}</td></tr>`).join('')+
+   `<tr class="tot"><td>Eyl–Ara</td><td>${f0.format(pSi/1e6)}</td><td>${f1.format(mv.si.reduce((a,b)=>a+b,0)/1e6)}</td><td>${gr(pSi,mv.si.reduce((a,b)=>a+b,0))}</td><td>${f0.format(pSo/1e6)}</td><td>${f1.format(mv.so.reduce((a,b)=>a+b,0)/1e6)}</td><td>${gr(pSo,mv.so.reduce((a,b)=>a+b,0))}</td></tr></tbody></table>`;
+  el('tgtNote').textContent=`Konuşulan rakamlar gerçekleşirse Eylül–Aralık'ta alım çıkıştan ₺ ${f0.format((pSi-pSo)/1e6)} M fazla olur. 2026 Ocak–Ağustos çıkışı geçen yıla göre ${SP(act.so/sum('niv',2025,0,8)-1,1)} artmıştı.`;
+  const row=(n,tg,ac,rq,pl,f)=>`<tr><td>${n}</td><td>${M(tg)}</td><td>${M(ac)}</td><td>${M(rq)}</td><td>${M(pl)}</td><td>${M(f)}</td><td style="${heat((f-tg)/tg*6)}">${sg(f-tg)}</td><td style="${heat((f-tg)/tg*6)}">${SP((f-tg)/tg,1)}</td></tr>`;
+  el('tgtTbl').innerHTML=`<table><thead><tr><th></th><th>Sene başı hedef</th><th>Ocak–Ağu gerçek</th><th>Eyl–Ara gereken</th><th>Eyl–Ara konuşulan</th><th>Yıl sonu beklenti</th><th>Sapma ₺ M</th><th>Sapma %</th></tr></thead><tbody>`+
+   row('Çıkış (sell-out)',T26.so,act.so,need.so,pSo,fy.so)+row('Alım (sell-in)',T26.si,act.si,need.si,pSi,fy.si)+
+   `<tr class="tot"><td>Alım − çıkış</td><td>${sg(T26.si-T26.so)}</td><td>${sg(act.si-act.so)}</td><td>${sg(need.si-need.so)}</td><td>${sg(pSi-pSo)}</td><td>${sg(fy.si-fy.so)}</td><td></td><td></td></tr></tbody></table><p class="note">Gereken = sene başı hedef − Ocak–Ağustos gerçekleşen. Sapma = yıl sonu beklenti − sene başı hedef.</p>`;
+}
+function monthVals25(){const so=[],si=[];for(let m=9;m<=12;m++){so.push(sum('niv',2025,r=>r.m===m,m));const p=PURCH.find(q=>q[0]===2025&&q[1]===m);si.push(p?p[2]:0)}return{so,si}}
+function renderAll(){renderPano();renderTargets()}
+renderAll();
+</script>
+
+</body></html>
